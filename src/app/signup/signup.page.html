@@ -1,0 +1,52 @@
+<ion-card>
+  <ion-card-header>
+    
+    
+  </ion-card-header>
+
+  <ion-card-content >
+
+    <div class="contenido">
+
+      <div class="title">
+        <ion-label>FORMULARIO DE REGISTRO</ion-label>
+      </div>
+      
+ 
+      
+      <div class="campos">
+        
+        
+
+          <ion-item style="border-radius: 10px;">
+            <ion-label position="floating">Usuario: </ion-label>
+            <ion-input  name="name" type="text" required [(ngModel)]="name"></ion-input >
+          </ion-item>
+          
+          <ion-item style="margin-top: 10px; border-radius: 10px;">
+            <ion-label position="floating">Correo: </ion-label>
+            <ion-input name="email" type="email" required [(ngModel)]="email"></ion-input>
+          </ion-item>          
+          <ion-item style="margin-top: 10px; border-radius: 10px;">
+            <ion-label position="floating">Contraseña: </ion-label>
+            <ion-input name="password" type="password" required [(ngModel)]="password"></ion-input>
+          </ion-item>
+          <ion-item style="margin-top: 10px; border-radius: 10px;">
+            <ion-label position="floating">Repetir contraseña: </ion-label>
+            <ion-input name="confirmar" type="password" required [(ngModel)]="confirmar"></ion-input>
+          </ion-item>
+        
+
+
+        
+      </div>
+  
+      <ion-button color="danger" (click)="sendFetchRegistro()" >Registrarse</ion-button>
+   
+      <ion-card-subtitle>¿Ya tienes cuenta? Accede desde <a routerLink="/signin">aquí</a></ion-card-subtitle>
+    </div>
+    
+    
+  </ion-card-content>
+</ion-card>
+
