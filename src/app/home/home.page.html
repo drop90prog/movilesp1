@@ -1,20 +1,86 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+  <ion-toolbar style="--background: red">
+    <ion-title style="--color: white">
+      Home
+    </ion-title>    
+      <ion-button slot="secondary" style="--background: tomato; margin-right: 20px;">
+        <ion-icon slot="icon-only" size="large" name="person-circle" ></ion-icon>
+        <a routerLink="/home/perfil" style="text-decoration: none;; color: white; margin-left: 3px;">Perfil</a>
+      </ion-button>
+   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+
+
+
+
+<ion-content [fullscreen]="true" style="height: 100%; overflow: hidden;">
+  <div class="carousel" >
+    <ion-slides style="height: 60px" [options]="sliderConfigMovie">
+      <ion-slide *ngFor="let gen of gender" >
+        <ion-chip style="height: 40px;">
+          <ion-label>{{gen.genero}}</ion-label>
+        </ion-chip>        
+      </ion-slide>
+    </ion-slides>
   </div>
+
+  <div class="search">
+    <div class="search-bar" >     
+      <ion-searchbar></ion-searchbar>
+      <img src="../../assets/img/logo.png" alt="">
+    </div>
+  </div>
+
+
+  
+  <div class="top-rated-movies">
+    <div class="header">
+      <img src="../../assets/img/top-rated-movies.png" alt="">
+    </div>
+    <div class="carousel-top-rated-movies" >         <!-- carousel -->
+      <ion-slides [options]="sliderConfigMovie" >
+        <ion-slide *ngFor="let peli of movie">
+
+          
+  
+          <div class="template">            
+            <div class="movie">  
+              <img src="{{img_url+peli.poster_path}}" alt="">
+            </div>
+            <div class="rating">              
+              <ion-label style="font-size: small; font-style: oblique;">{{peli.vote_average}}</ion-label>
+              <img src="../../assets/img/0.png" alt="" style="margin-left: 5px;" *ngIf="checkRating0(peli.vote_average)">
+              <img src="../../assets/img/123.png" alt="" style="margin-left: 5px;" *ngIf="checkRating123(peli.vote_average)">
+              <img src="../../assets/img/45.png" alt="" style="margin-left: 5px;" *ngIf="checkRating45(peli.vote_average)">
+              <img src="../../assets/img/67.png" alt="" style="margin-left: 5px;" *ngIf="checkRating67(peli.vote_average)">
+              <img src="../../assets/img/8.png" alt="" style="margin-left: 5px;" *ngIf="checkRating8(peli.vote_average)">
+              <img src="../../assets/img/910.png" alt="" style="margin-left: 5px;" *ngIf="checkRating910(peli.vote_average)">
+            </div>
+            <div class="nombre">
+              <ion-label style="font-size: medium; font-family: Arial; ">{{peli.title}}</ion-label>
+            </div>            
+          </div>    
+          
+          
+        </ion-slide>
+      </ion-slides>
+    </div>
+  </div>
+  
+    
 </ion-content>
+
+<div class="footer" >
+  <ion-footer >
+    <ion-toolbar style="--background: red;">
+      <ion-button color="danger" style="float: right; margin-right: 15px;">
+        <a routerLink="/inicio" style="text-decoration: none;; color: white; margin-left: 3px;">Cerrar Sesión</a>
+        <ion-icon size="large" name="log-out-outline" style="margin-left: 10px;"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+  </ion-footer>
+</div>
+
+

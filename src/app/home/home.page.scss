@@ -1,27 +1,102 @@
-#container {
-  text-align: center;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+
+.carousel{
+  height: 60px;
+  background-color: rgb(243, 243, 243);
+ 
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.search{
+  
+  background-color: red;
+  height: 60px;
+  width: 100%;
+  
+  .search-bar{
+    float: right;
+    margin-right: 20px;
+    width: 600px;
+
+    
+      
+      
+    ion-searchbar{
+      --icon-color:white;
+      --background: #971f06;
+      --color: white;
+      --border-radius: 30px;
+      float: right;
+      width: 40%;     
+      
+    }
+    img{
+      padding: 5px 35px ;
+      float: right;
+    }
+  
+    
+  }
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+.top-rated-movies{
+  .header{
+    height: 80px;
+    width: 100%;
+    background-color: white;
+    img{
+      padding: 40px 20px ;
+    }
+  }
+  height: 400px;
+  width: 100%;
 
-  color: #8c8c8c;
+  .carousel-top-rated-movies{
+    height: 300px;
+    width: 100%;
 
-  margin: 0;
-}
+    
+    .template{
+      
+      height: 275px;
+      width: 180px;
+      /* background-color: rgb(194, 194, 194); */
+      .movie{
+        img{
+          margin-left: 10px;
+          border-radius: 10px;
+          height: 180px;
+          width: 160x;
+          
+        }
+        max-height: 70%;
+        max-width: 90%;
+        /* background-color: darkgreen; */
+        margin: auto;
+        margin-top: 15px;
+        border-radius: 10px;
+      }
+      .rating{
+        display: flex;
+        align-items: center;
+        width: 30%;
+        height: 25px;
+        /* background-color: darkorange; */
+        margin-left: 65px;
+      }
+      .nombre{
+        width: 90%;
+        
+        /* background-color: rgb(131, 174, 255); */
+        margin-left: 15px;
+       
+        ion-label{
+          
+          font-size: 15px;
+          margin-top: 10px;
+        }
+      }
+    }
 
-#container a {
-  text-decoration: none;
+  }
+  
 }
