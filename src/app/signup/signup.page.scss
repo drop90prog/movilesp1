@@ -1,17 +1,4 @@
 
-ion-card{
-
-    height: 50%;
-    max-width: 405px;
-    min-width: 400px;
-    max-height: 536px;
-    min-height: 532px;
-    width: 60%;
-    margin: 0 auto;
-    margin-top: auto;
-    margin-bottom: auto;
-    background-color: rgb(245, 245, 245);
-
     .title{
         height: auto;
         width: auto;   
@@ -30,6 +17,7 @@ ion-card{
     .contenido{
         height: 100%;
         width: 100%;
+        margin-top: 100px;
         /* background-color: cadetblue; */
     }
     
@@ -48,9 +36,9 @@ ion-card{
     }
 
     ion-card-subtitle{
-        width: 400px;
-        padding: 20px 70px;
+        
+        padding: 20px 40px;
     }
 
 
-}
+

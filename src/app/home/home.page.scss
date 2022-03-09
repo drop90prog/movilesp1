@@ -2,31 +2,27 @@
 
 .carousel{
   height: 60px;
-  background-color: rgb(243, 243, 243);
+  margin-top: 10px;
  
 }
 
 .search{
   
-  background-color: red;
+  
   height: 60px;
   width: 100%;
   
   .search-bar{
     float: right;
-    margin-right: 20px;
-    width: 600px;
-
     
-      
-      
+    
     ion-searchbar{
       --icon-color:white;
-      --background: #971f06;
+      --background: #808080;
       --color: white;
       --border-radius: 30px;
       float: right;
-      width: 40%;     
+      width: 360px;     
       
     }
     img{
@@ -40,24 +36,24 @@
 
 .top-rated-movies{
   .header{
-    height: 80px;
+    height: 40px;
     width: 100%;
     background-color: white;
     img{
-      padding: 40px 20px ;
+      padding: 10px 20px ;
     }
   }
   height: 400px;
   width: 100%;
 
   .carousel-top-rated-movies{
-    height: 300px;
+    height: 320px;
     width: 100%;
 
     
     .template{
       
-      height: 275px;
+      height: 320px;
       width: 180px;
       /* background-color: rgb(194, 194, 194); */
       .movie{

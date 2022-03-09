@@ -1,0 +1,40 @@
+
+
+ion-content{
+    width: 360px;
+
+    .form{padding: 20px;}
+
+    ion-img{
+        margin-top: 30px;
+        margin-left: 145px;
+        height: 70px;
+        width: 70px;
+    }
+
+
+    .nombre{
+        margin-top: 20px;
+        margin-left: 145px;
+    }
+
+    .editar-perfil{
+        margin-left: 70px;
+        display: flex;
+    }
+
+    .form{
+        margin-top: 30px;
+        ion-button{
+            margin-top: 20px;
+            width: 100%;
+        }
+    }
+
+
+
+
+
+
+
+}

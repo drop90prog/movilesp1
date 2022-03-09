@@ -82,7 +82,9 @@ export class HomePage implements OnInit{
    */
 
 
-
+ show(arg){
+  console.log(arg)
+}
 
 
 }

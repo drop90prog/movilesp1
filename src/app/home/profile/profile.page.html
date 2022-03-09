@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="--background: gray">
+    <ion-title style="--color: white">
+      Perfil de usuario
+    </ion-title>
+      
+   </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="content">
+    <div class="uno">
+      <div class="foto">
+        
+        <ion-img src="../../../assets/img/perfil.png"></ion-img>
+          
+        
+      </div>
+      <div class="nombre">
+        <ion-label style="font-size: large;">Usuario</ion-label>
+      </div>
+    </div>
+
+    <div class="dos">
+      <div class="editar-perfil"> 
+        <ion-icon style="padding: 12px;" size="large" name="pencil-outline"></ion-icon>       
+        <ion-text color="black">
+          <h4 >Editar perfil</h4>
+        </ion-text>
+        <ion-icon style="padding: 12px;" size="large" name="pencil-outline"></ion-icon>
+      </div>
+
+      <div class="form">
+        <ion-item >
+          <ion-label>Nombre: </ion-label>
+          <ion-input></ion-input>
+        </ion-item>        
+        <ion-item >
+          <ion-label>Correo: </ion-label>
+          <ion-input ></ion-input>
+        </ion-item>
+        <ion-item >
+          <ion-label>Usuario: </ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+        <ion-item >
+          <ion-label>Contraseña: </ion-label>
+          <ion-input type="password"></ion-input>
+        </ion-item>
+
+        
+          <ion-button color="light">Guardar cambios</ion-button>
+         
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer >
+  <ion-toolbar style="--background: gray;">
+    <ion-button routerLink="/signin" color="dark" style="float: right; margin-right: 15px;">      
+        <ion-icon size="large" name="log-out-outline" ></ion-icon>     
+    </ion-button>
+
+    <ion-button routerLink="/home" color="dark" style="margin-left: 15px;">
+      <ion-icon name="arrow-back-outline"></ion-icon>      
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

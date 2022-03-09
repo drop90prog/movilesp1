@@ -27,9 +27,13 @@ export class SigninPage implements OnInit {
       headers:{            
           'Content-Type': 'application/json'
       }
-      }).then(res =>{ res.json() 
+      }).then(res =>{ 
       
-        if(res.status==200) {         
+        if(res.status==200) {   
+          
+          res.json().then((data) => {
+            console.log(data.token)
+          })
           
           window.location.href = '/home';
         }

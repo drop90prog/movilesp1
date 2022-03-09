@@ -1,11 +1,10 @@
 <ion-header [translucent]="true">
-  <ion-toolbar style="--background: red">
+  <ion-toolbar style="--background: gray">
     <ion-title style="--color: white">
       Home
     </ion-title>    
-      <ion-button slot="secondary" style="--background: tomato; margin-right: 20px;">
+      <ion-button routerLink="/home/profile" slot="secondary" color="dark" style="margin-right: 20px;">
         <ion-icon slot="icon-only" size="large" name="person-circle" ></ion-icon>
-        <a routerLink="/home/perfil" style="text-decoration: none;; color: white; margin-left: 3px;">Perfil</a>
       </ion-button>
    </ion-toolbar>
 </ion-header>
@@ -15,7 +14,7 @@
 
 
 
-<ion-content [fullscreen]="true" style="height: 100%; overflow: hidden;">
+<ion-content  style="width: 360px;">
   <div class="carousel" >
     <ion-slides style="height: 60px" [options]="sliderConfigMovie">
       <ion-slide *ngFor="let gen of gender" >
@@ -29,7 +28,7 @@
   <div class="search">
     <div class="search-bar" >     
       <ion-searchbar></ion-searchbar>
-      <img src="../../assets/img/logo.png" alt="">
+<!--       <img src="../../assets/img/logo.png" alt=""> -->
     </div>
   </div>
 
@@ -44,10 +43,10 @@
         <ion-slide *ngFor="let peli of movie">
 
           
-  
-          <div class="template">            
+          
+          <div class="template">                      
             <div class="movie">  
-              <img src="{{img_url+peli.poster_path}}" alt="">
+              <img src="{{img_url+peli.poster_path}}" alt="">              
             </div>
             <div class="rating">              
               <ion-label style="font-size: small; font-style: oblique;">{{peli.vote_average}}</ion-label>
@@ -60,7 +59,8 @@
             </div>
             <div class="nombre">
               <ion-label style="font-size: medium; font-family: Arial; ">{{peli.title}}</ion-label>
-            </div>            
+            </div>  
+            <ion-button (click)="show(peli.title)"></ion-button>            
           </div>    
           
           
@@ -74,9 +74,8 @@
 
 <div class="footer" >
   <ion-footer >
-    <ion-toolbar style="--background: red;">
-      <ion-button color="danger" style="float: right; margin-right: 15px;">
-        <a routerLink="/inicio" style="text-decoration: none;; color: white; margin-left: 3px;">Cerrar Sesión</a>
+    <ion-toolbar style="--background: gray;">
+      <ion-button routerLink="/signin" color="dark" style="float: right; margin-right: 15px;">        
         <ion-icon size="large" name="log-out-outline" style="margin-left: 10px;"></ion-icon>
       </ion-button>
     </ion-toolbar>

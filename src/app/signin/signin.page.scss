@@ -1,15 +1,9 @@
-ion-card{
+
     
-    height: 50%;
-    max-width: 405px;
-    min-width: 400px;
-    max-height: 536px;
-    min-height: 532px;
-    width: 60%;
-    margin: 0 auto;
-    margin-top: auto;
-    margin-bottom: auto;
-    background-color: rgb(245, 245, 245);
+ion-card-content{
+    margin-top: 150px;
+    
+}
 
     .campos{
         margin-top: 10%;
@@ -24,8 +18,9 @@ ion-card{
 
     ion-card-subtitle{
         
-        padding: 20px 70px;
+        margin-top: 20px;
+        margin-left: 50px;
     }
 
 
-}
+

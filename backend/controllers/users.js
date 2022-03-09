@@ -29,8 +29,6 @@ function signin (req, res) {
     User.findOne({email: req.body.email}, (err, user)=> {
         if(err || !user) return res.status(500).send({message: "Email or password wrong"})
         else{console.log("user: "+user)
-            req.user = user
-            console.log(req.user)
             return res.status(200).send({
                 message:'Logged in successfully',
                 token: service.createToken(user)
