@@ -14,10 +14,12 @@ function signup (req, res) {
         password: req.body.password,
         avatar: 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y',
     })
-    user.save((err)=>{
-        if(err)res.status(500).send({message:`Error ${err}`})
-        return res.status(200).send({message:"New user created"})
-    })
+
+
+        user.save((err)=>{
+            if(err)res.status(500).send({message:`Error ${err}`})
+            return res.status(200).send({message:"New user created"})
+        })
     }//else
 }
 
@@ -86,8 +88,10 @@ function signin (req, res) {
 }//updatePicture
 
 function updateUser (req, res) {  
-    
-    if(req.body.name)
+
+
+    function cambio(){
+        if(req.body.name)
         User.findByIdAndUpdate(req.body.id,{"name": req.body.name }, function(err, result){
             
         })       
@@ -101,22 +105,35 @@ function updateUser (req, res) {
         User.findByIdAndUpdate(req.body.id,{"password": req.body.password }, function(err, result){       
             
         })
-        
-    if(!req.body.name && !req.body.email && !req.body.password)
-    return res.status(200).send({
-        message:'Please fill the fields'        
-    })
+    }
 
 
-    User.findById(req.body.id, (err, user)=> {
-            return res.status(200).send({
-                message:'Successfully updated',
-                token: service.createToken(user)
-            })      
+    const t = async()=>{
+        await cambio()
+
+        if(!req.body.name && !req.body.email && !req.body.password)
+        return res.status(200).send({
+            message:'Please fill the fields'        
+        })
+    
+        else{
+            User.findById(req.body.id, (err, user)=> {
+                console.log(user)
+                    return res.status(200).send({
+                        message:'Successfully updated',
+                        token: service.createToken(user)
+                    })      
+                
+            })//user.findOne  
         
-    })//user.findOne  
-    
-    
+        }
+
+
+    }
+
+t()
+
+
      
  }//updateUser
 

@@ -32,7 +32,9 @@ export class SigninPage implements OnInit {
         if(res.status==200) {   
           
           res.json().then((data) => {
-            console.log(data.token)
+            localStorage.setItem('token',data.token)
+
+
           })
           
           window.location.href = '/home';

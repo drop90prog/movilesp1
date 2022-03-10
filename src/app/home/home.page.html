@@ -75,7 +75,7 @@
 <div class="footer" >
   <ion-footer >
     <ion-toolbar style="--background: gray;">
-      <ion-button routerLink="/signin" color="dark" style="float: right; margin-right: 15px;">        
+      <ion-button routerLink="/signin" (click)="signout()" color="dark" style="float: right; margin-right: 15px;">        
         <ion-icon size="large" name="log-out-outline" style="margin-left: 10px;"></ion-icon>
       </ion-button>
     </ion-toolbar>

@@ -86,5 +86,8 @@ export class HomePage implements OnInit{
   console.log(arg)
 }
 
+  signout(){
+    localStorage.clear()
+  }
 
 }

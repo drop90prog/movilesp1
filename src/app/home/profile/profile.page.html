@@ -17,7 +17,7 @@
         
       </div>
       <div class="nombre">
-        <ion-label style="font-size: large;">Usuario</ion-label>
+        <ion-label style="font-size: large;">{{username}}</ion-label>
       </div>
     </div>
 
@@ -30,26 +30,24 @@
         <ion-icon style="padding: 12px;" size="large" name="pencil-outline"></ion-icon>
       </div>
 
-      <div class="form">
-        <ion-item >
-          <ion-label>Nombre: </ion-label>
-          <ion-input></ion-input>
-        </ion-item>        
-        <ion-item >
-          <ion-label>Correo: </ion-label>
-          <ion-input ></ion-input>
-        </ion-item>
+      <div class="form"> 
         <ion-item >
           <ion-label>Usuario: </ion-label>
-          <ion-input></ion-input>
-        </ion-item>
+          <ion-input [(ngModel)]="name" type="name"></ion-input>
+        </ion-item>    
+        <ion-item >
+          <ion-label>Correo: </ion-label>
+          <ion-input [(ngModel)]="email" type="email"></ion-input>
+        </ion-item>       
         <ion-item >
           <ion-label>Contraseña: </ion-label>
-          <ion-input type="password"></ion-input>
+          <ion-input [(ngModel)]="password" type="password" ></ion-input>
         </ion-item>
 
         
-          <ion-button color="light">Guardar cambios</ion-button>
+          <ion-button (click)="guardarCambios()" color="light">Guardar cambios</ion-button>
+
+
          
       </div>
     </div>
@@ -59,7 +57,7 @@
 
 <ion-footer >
   <ion-toolbar style="--background: gray;">
-    <ion-button routerLink="/signin" color="dark" style="float: right; margin-right: 15px;">      
+    <ion-button routerLink="/signin" (click)="signout()" color="dark" style="float: right; margin-right: 15px;">      
         <ion-icon size="large" name="log-out-outline" ></ion-icon>     
     </ion-button>
 
