@@ -44,7 +44,7 @@
 
           
           
-          <div class="template">                      
+          <div class="template" (click)="send(peli.title, peli.overview, img_url+peli.backdrop_path, peli.vote_average, peli.vote_count, peli.id)">                      
             <div class="movie">  
               <img src="{{img_url+peli.poster_path}}" alt="">              
             </div>
@@ -60,7 +60,7 @@
             <div class="nombre">
               <ion-label style="font-size: medium; font-family: Arial; ">{{peli.title}}</ion-label>
             </div>  
-            <ion-button (click)="show(peli.title)"></ion-button>            
+            <!-- <ion-button (click)="send(peli.title, peli.overview, img_url+peli.backdrop_path, peli.vote_average, peli.vote_count, peli.id)"></ion-button> -->            
           </div>    
           
           

@@ -82,12 +82,32 @@ export class HomePage implements OnInit{
    */
 
 
- show(arg){
-  console.log(arg)
+ send(title, overview, backdropPath, voteAverage, voteCount, ide){
+   let ok =
+     {
+       title: title,
+       overview: overview,
+       backdropPath: backdropPath,
+       voteAverage: voteAverage,
+       voteCount: voteCount,
+       ide: ide
+     }
+    
+     localStorage.setItem('titulo',ok.title)
+     localStorage.setItem('overview',ok.overview)
+     localStorage.setItem('imagen',ok.backdropPath)
+     localStorage.setItem('voteAverage',ok.voteAverage)
+     localStorage.setItem('voteCount',ok.voteCount)
+     localStorage.setItem('ide',ok.ide)
+     window.location.href = '/home/movie';
+     console.log(ok.backdropPath)
+   
+  
 }
 
   signout(){
     localStorage.clear()
+    window.location.href = '/signin';
   }
 
 }

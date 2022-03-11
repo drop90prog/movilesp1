@@ -44,7 +44,9 @@ export class SignupPage implements OnInit {
     }
 
 
-
+    goSignIn(){
+      window.location.href = '/signin'
+    }
 
 
 }

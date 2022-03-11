@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>movie</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <img src="{{imagen}}" alt="">  
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h3 class="ion-text-center">
+          {{titulo}}
+        </h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p>
+          {{overview}}
+        </p>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+
+      <ion-col class="ion-text-center">
+        <p>rate: {{voteAverage}}</p>
+      </ion-col>       
+
+          <ion-button>up</ion-button>
+          <ion-button>down</ion-button>
+
+        <ion-col class="ion-text-center">
+          <p>votes: {{voteCount}}</p>
+        </ion-col>        
+
+    </ion-row>
+  </ion-grid>
+
+  <ion-row>
+    <ion-col>
+      <p style="font-weight: bold">Comments</p> 
+    </ion-col>    
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-list>
+        <ion-item *ngFor="let com of comments">
+          <ion-text style="font-weight: bold">@{{com.user}}</ion-text>
+           <ion-text style="margin-left: 10px;">{{com.comment}}</ion-text>
+        </ion-item>
+      </ion-list>      
+    </ion-col>    
+  </ion-row>
+  <ion-row>
+    <ion-item style="border-radius: 10px;">
+      
+      <ion-input  name="name" type="text" [(ngModel)]="komentario"></ion-input >      
+    </ion-item>
+    <ion-button (click)="comentar()">comentar</ion-button>
+  </ion-row>
+
+
+
+
+
+</ion-content>
+
+
+<ion-footer >
+  <ion-toolbar style="--background: gray;">
+    <ion-button (click)="back()" color="dark" style="margin-left: 15px;">
+      <ion-icon name="arrow-back-outline"></ion-icon>      
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
