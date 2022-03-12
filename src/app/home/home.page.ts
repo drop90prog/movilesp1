@@ -27,6 +27,7 @@ export class HomePage implements OnInit{
     await this.fesh.getMovieData()
       .subscribe(res => {
         this.movie = res.results;
+        localStorage.setItem('movie',JSON.stringify(this.movie))
       }, err => {
         console.log(err);
       });
@@ -105,6 +106,11 @@ export class HomePage implements OnInit{
     }
 
 
+    search(){
+      window.location.href = '/home/search'
+    }
+
+
 
 
 
@@ -164,11 +170,8 @@ export class HomePage implements OnInit{
 
 
  send(mov){
-
-
      localStorage.setItem('movie', JSON.stringify(mov))
      window.location.href = '/home/movie';
-
 }
 
   signout(){

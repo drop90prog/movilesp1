@@ -1,0 +1,28 @@
+.search{
+  
+  
+    height: 60px;
+    width: 100%;
+
+    
+    .search-bar{
+      float: right;
+      
+      
+      ion-searchbar{
+        --icon-color:white;
+        --background: #909090;
+        --color: white;
+        --border-radius: 30px;
+        float: right;
+        width: 360px;     
+        
+      }
+      img{
+        padding: 5px 35px ;
+        float: right;
+      }
+    
+      
+    }
+  }

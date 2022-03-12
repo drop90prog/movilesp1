@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="search">
+    <div class="search-bar" >     
+      <ion-searchbar
+        placeholder="bushcaaa"
+        [(ngModel)]="sorch"
+        showCancelButton="focus"
+        animated
+      ></ion-searchbar>
+    </div>
+  </div>
+
+
+
+  <ion-row>
+    <ion-col>
+      <h3 class="ion-text-center">
+        {{genero}}
+      </h3>
+    </ion-col>    
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-list>
+        <ion-item *ngFor="let m of movies | filter: sorch" (click)="lookInto(m)">
+          <ion-text style="font-weight: bold">{{m.original_title}}</ion-text>
+        </ion-item>
+      </ion-list>      
+    </ion-col>    
+  </ion-row>
+
+
+
+
+
+
+
+
+</ion-content>

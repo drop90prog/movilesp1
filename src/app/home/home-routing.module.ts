@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'genre',
     loadChildren: () => import('./genre/genre.module').then( m => m.GenrePageModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
   }
 ];
 
