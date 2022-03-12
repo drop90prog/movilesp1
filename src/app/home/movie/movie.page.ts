@@ -20,15 +20,13 @@ export class MoviePage implements OnInit {
   ideuser:any
   username:string
 
+  movie:any;
+
   constructor() { }
   
   ngOnInit() {
-    this.titulo = localStorage.getItem('titulo')
-    this.overview = localStorage.getItem('overview')
-    this.imagen = localStorage.getItem('imagen')
-    this.voteAverage = localStorage.getItem('voteAverage')
-    this.voteCount = localStorage.getItem('voteCount')
-    this.ide = localStorage.getItem('ide') 
+
+    this.movie= JSON.parse(localStorage.getItem('movie'))
     
     let ls=localStorage.getItem('token')
     let iusername = helper.decodeToken(ls);
@@ -46,7 +44,7 @@ export class MoviePage implements OnInit {
 
   getComments(){
 
-    let info = {idmovie:this.ide}
+    let info = {idmovie:this.movie.id}
 
 /*     fetch('http://localhost:3000/findcomments', { */
       fetch('https://movilesp1.herokuapp.com/findcomments', {
@@ -93,19 +91,14 @@ export class MoviePage implements OnInit {
 
 
   back(){
-    localStorage.removeItem('titulo')
-    localStorage.removeItem('overview')
-    localStorage.removeItem('imagen')
-    localStorage.removeItem('voteAverage')
-    localStorage.removeItem('voteCount')
-    localStorage.removeItem('ide') 
+    localStorage.removeItem('movie')
     window.location.href = '/home'
 
   }
 
   saveComments(){
 
-    let info = {idmovie:this.ide, iduser:this.ideuser, comment:this.komentario, username:this.username };
+    let info = {idmovie:this.movie.id, iduser:this.ideuser, comment:this.komentario, username:this.username };
 
 /*     fetch('http://localhost:3000/savecomment', { */
     fetch('https://movilesp1.herokuapp.com/savecomment', {

@@ -9,34 +9,34 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <img src="{{imagen}}" alt="">  
+        <img src="{{urll+movie.backdrop_path}}" alt="">  
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
         <h3 class="ion-text-center">
-          {{titulo}}
+          {{movie.original_title}}
         </h3>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
         <p>
-          {{overview}}
+          {{movie.overview}}
         </p>
       </ion-col>
     </ion-row>
     <ion-row >
 
       <ion-col class="ion-text-center">
-        <p>rate: {{voteAverage}}</p>
+        <p>rate: {{movie.vote_average}}</p>
       </ion-col>       
 
           <ion-button>up</ion-button>
           <ion-button>down</ion-button>
 
         <ion-col class="ion-text-center">
-          <p>votes: {{voteCount}}</p>
+          <p>votes: {{movie.vote_count}}</p>
         </ion-col>        
 
     </ion-row>

@@ -9,6 +9,13 @@ import { FetchService } from '../fetch.service';
 export class HomePage implements OnInit{
 
   movie: any;
+  page1: any;
+  page2: any
+  page3: any
+  page4: any
+  page5: any
+  movieGenre = []
+  
   constructor(private fesh: FetchService) {   }
 
   ngOnInit(){
@@ -19,13 +26,88 @@ export class HomePage implements OnInit{
   async useMovieData() {
     await this.fesh.getMovieData()
       .subscribe(res => {
-        console.log('subscribe: '+res);
         this.movie = res.results;
-    console.log(this.movie);
       }, err => {
         console.log(err);
       });
   }
+
+//====================================page1
+  async usePage1(idgenre, genr) {
+    await this.fesh.getPage1()
+      .subscribe(res => {
+        this.page1 = res.results;
+        for (let x in this.page1){
+          let ocarina = res.results[x].genre_ids
+            for (let y in ocarina){
+              if(ocarina[y]==idgenre) this.movieGenre.push(res.results[x])
+            }         
+        }
+
+        
+        localStorage.setItem('muvi',JSON.stringify(this.movieGenre))
+        localStorage.setItem('muvigen',genr)
+
+        /* JSON.parse() */
+        
+
+       
+        
+      }, err => {
+        console.log(err);
+      });
+  }
+
+
+  //====================================page2
+  async usePage2() {
+    await this.fesh.getPage2()
+      .subscribe(res => {
+        this.page2 = res.results;
+    /* console.log(this.page2); */
+      }, err => {
+        console.log(err);
+      });
+  }
+
+    //====================================page3
+    async usePage3() {
+      await this.fesh.getPage3()
+        .subscribe(res => {
+
+          this.page3 = res.results;
+      /* console.log(this.page3); */
+        }, err => {
+          console.log(err);
+        });
+    }
+
+      //====================================page4
+  async usePage4() {
+    await this.fesh.getPage4()
+      .subscribe(res => {
+        this.page4 = res.results;
+    /* console.log(this.page4); */
+      }, err => {
+        console.log(err);
+      });
+  }
+
+    //====================================page5
+    async usePage5() {
+      await this.fesh.getPage5()
+        .subscribe(res => {
+          this.page5 = res.results;
+      /* console.log(this.page5); */
+        }, err => {
+          console.log(err);
+        });
+    }
+
+
+
+
+
   
   img_url = "https://image.tmdb.org/t/p/w500";
   
@@ -55,54 +137,38 @@ export class HomePage implements OnInit{
   }
   
   
-  public gender = [
-    {genero:'Drama'},
-    {genero:'Comedia'},
-    {genero:'Suspenso'},
-    {genero:'Romance'},
-    {genero:'Ciencia Ficción'},
-    {genero:'Fantasia'},
-    {genero:'Acción'},
-    {genero:'Terror'},
+  public genre = [
+    {genre:'Drama', id: 18},
+    {genre:'Comedy', id: 35},
+    {genre:'Thriller', id: 53},
+    {genre:'Romance', id: 10749},
+    {genre:'Science Fiction', id: 878},
+    {genre:'Fantasy', id: 14},
+    {genre:'Action', id: 28},
+    {genre:'Horror', id: 27},
   ]
-  
-  /* 
-  logout(){ 
-    
-    fetch('http://localhost:3000/signout', {
-      method: 'POST',     
-      headers:{            
-          'Content-Type': 'application/json'
-      }
-      }).then(res => res.json() ) 
-      .catch(error => console.error('Error:', error))
-      .then(response => console.log(response));
-    }
-  
-   */
 
 
- send(title, overview, backdropPath, voteAverage, voteCount, ide){
-   let ok =
-     {
-       title: title,
-       overview: overview,
-       backdropPath: backdropPath,
-       voteAverage: voteAverage,
-       voteCount: voteCount,
-       ide: ide
-     }
-    
-     localStorage.setItem('titulo',ok.title)
-     localStorage.setItem('overview',ok.overview)
-     localStorage.setItem('imagen',ok.backdropPath)
-     localStorage.setItem('voteAverage',ok.voteAverage)
-     localStorage.setItem('voteCount',ok.voteCount)
-     localStorage.setItem('ide',ok.ide)
+  getMoviesGenre(genero, id){
+    this.usePage1(id, genero)
+    this.usePage2()
+    this.usePage3()
+    this.usePage4()
+    this.usePage5()
+
+
+    window.location.href = '/home/genre';
+
+  }
+  
+
+
+ send(mov){
+
+
+     localStorage.setItem('movie', JSON.stringify(mov))
      window.location.href = '/home/movie';
-     console.log(ok.backdropPath)
-   
-  
+
 }
 
   signout(){

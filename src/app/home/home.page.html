@@ -17,9 +17,9 @@
 <ion-content  style="width: 360px;">
   <div class="carousel" >
     <ion-slides style="height: 60px" [options]="sliderConfigMovie">
-      <ion-slide *ngFor="let gen of gender" >
-        <ion-chip style="height: 40px;">
-          <ion-label>{{gen.genero}}</ion-label>
+      <ion-slide *ngFor="let gen of genre" >
+        <ion-chip style="height: 40px;" (click)="getMoviesGenre(gen.genre, gen.id)">
+          <ion-label>{{gen.genre}}</ion-label>
         </ion-chip>        
       </ion-slide>
     </ion-slides>
@@ -44,7 +44,8 @@
 
           
           
-          <div class="template" (click)="send(peli.title, peli.overview, img_url+peli.backdrop_path, peli.vote_average, peli.vote_count, peli.id)">                      
+         <!--  <div class="template" (click)="send(peli.title, peli.overview, img_url+peli.backdrop_path, peli.vote_average, peli.vote_count, peli.id)"> -->
+          <div class="template" (click)="send(peli)">                     
             <div class="movie">  
               <img src="{{img_url+peli.poster_path}}" alt="">              
             </div>
