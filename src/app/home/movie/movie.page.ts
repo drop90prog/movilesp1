@@ -17,6 +17,7 @@ export class MoviePage implements OnInit {
   voteCount:any
   ide:any
 
+  ideuser:any
   username:string
 
   constructor() { }
@@ -32,6 +33,8 @@ export class MoviePage implements OnInit {
     let ls=localStorage.getItem('token')
     let iusername = helper.decodeToken(ls);
     this.username =iusername.name 
+    this.ideuser = iusername.sub
+    this.getComments()
     
   }
 
@@ -41,10 +44,44 @@ export class MoviePage implements OnInit {
 
   komentario
 
-  comentar(){
-    this.comments.push({user:this.username,comment:this.komentario})
-    this.komentario=""
-    console.log(this.comments)
+  getComments(){
+
+    let info = {idmovie:this.ide}
+
+/*     fetch('http://localhost:3000/findcomments', { */
+      fetch('https://movilesp1.herokuapp.com/findcomments', {
+      method: 'POST', 
+      body: JSON.stringify(info), 
+      headers:{            
+          'Content-Type': 'application/json'
+      }
+      }).then(res =>{ 
+      
+        if(res.status==200) {   
+          
+          res.json().then((data) => {
+           
+            if(data.resultado.length>0){
+              
+              for (let a in data.resultado){
+                this.comments.push({
+                  user: data.resultado[a].username,
+                  comment: data.resultado[a].comment
+                })               
+              }
+              
+              
+              
+            }
+
+          })
+          
+      
+        }
+      
+      }) 
+      .catch(error => console.error('Error:', error))
+
   }
 
 
@@ -56,18 +93,22 @@ export class MoviePage implements OnInit {
 
 
   back(){
-    localStorage.clear()
+    localStorage.removeItem('titulo')
+    localStorage.removeItem('overview')
+    localStorage.removeItem('imagen')
+    localStorage.removeItem('voteAverage')
+    localStorage.removeItem('voteCount')
+    localStorage.removeItem('ide') 
     window.location.href = '/home'
 
   }
 
   saveComments(){
 
+    let info = {idmovie:this.ide, iduser:this.ideuser, comment:this.komentario, username:this.username };
 
-    let info = { };
-
-
-    fetch('https://movilesp1.herokuapp.com/update', {
+/*     fetch('http://localhost:3000/savecomment', { */
+    fetch('https://movilesp1.herokuapp.com/savecomment', {
       method: 'POST', 
       body: JSON.stringify(info), 
       headers:{            
@@ -78,20 +119,14 @@ export class MoviePage implements OnInit {
         if(res.status==200) {   
           
           res.json().then((data) => {
-            localStorage.clear()
-            localStorage.setItem('token',data.token)
-            let fdd=localStorage.getItem('token')
-            let iusernamee = helper.decodeToken(fdd);
-            this.username =iusernamee.name   
-            alert("Cambio realizado...")
-          })
-          
-     
+            this.comments.push({user:this.username,comment:this.komentario})
+            this.komentario=""
+            alert(data.message)
+          })     
         }
       
       }) 
       .catch(error => console.error('Error:', error))
-      .then(response => console.log(response));
   }
 
 

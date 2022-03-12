@@ -33,8 +33,6 @@ export class SignupPage implements OnInit {
           
           res.json().then((data) => {
             alert(data.message)
-
-
           })
           
         }

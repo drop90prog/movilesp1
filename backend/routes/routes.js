@@ -43,10 +43,12 @@ api.delete('/removeimg', imagesCtrl.deleteImage)
 
 
 
+//=========================================================COMMENTS
 
+const commentCtrl = require ('../controllers/comments')
 
-
-
+api.post('/savecomment', commentCtrl.saveComment)
+api.post('/findcomments', commentCtrl.findComments)
 
 
 
