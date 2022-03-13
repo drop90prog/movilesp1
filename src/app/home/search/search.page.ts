@@ -9,18 +9,30 @@ export class SearchPage implements OnInit {
 
   constructor() { }
 
-  movies;
+  moviesToken;
+  movies = [];
   sorch:string;
 
   ngOnInit() {
-    this.movies=JSON.parse(localStorage.getItem('movie'))
+    this.moviesToken=JSON.parse(localStorage.getItem('allmovies'))
+
+    
+    for (let x in this.moviesToken){
+      let singleArray = this.moviesToken[x]
+      
+      for (let y in singleArray){
+
+        this.movies.push(singleArray[y])
+        
+        
+      }
+
+    }    
   }
 
 
 
   lookInto(pelicula){
-    localStorage.removeItem('muvi')
-    localStorage.removeItem('muvigen')
 
     localStorage.setItem('movie',JSON.stringify(pelicula))
     window.location.href = '/home/movie'

@@ -66,10 +66,7 @@ export class MoviePage implements OnInit {
                   user: data.resultado[a].username,
                   comment: data.resultado[a].comment
                 })               
-              }
-              
-              
-              
+              }             
             }
 
           })

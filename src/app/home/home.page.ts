@@ -8,12 +8,14 @@ import { FetchService } from '../fetch.service';
 })
 export class HomePage implements OnInit{
 
-  movie: any;
+  movie: any;//solo para el top rated
+  allmovies = []
+  rated: any;
   page1: any;
-  page2: any
-  page3: any
-  page4: any
-  page5: any
+  page2: any;
+  page3: any;
+  page4: any;
+  page5: any;
   movieGenre = []
   
   constructor(private fesh: FetchService) {   }
@@ -27,7 +29,7 @@ export class HomePage implements OnInit{
     await this.fesh.getMovieData()
       .subscribe(res => {
         this.movie = res.results;
-        localStorage.setItem('movie',JSON.stringify(this.movie))
+/*         localStorage.setItem('movie',JSON.stringify(this.movie)) */
       }, err => {
         console.log(err);
       });
@@ -35,79 +37,190 @@ export class HomePage implements OnInit{
 
 //====================================page1
   async usePage1(idgenre, genr) {
-    await this.fesh.getPage1()
+
+    if(idgenre==null){ console.log("1")
+      await this.fesh.getPage1()
       .subscribe(res => {
+        this.allmovies.push(res.results)
+        localStorage.setItem('allmovies',JSON.stringify(this.allmovies))
+      }, err => {
+        console.log(err);
+      });
+    }
+
+    else{
+    await this.fesh.getPage1()
+      .subscribe(res => { 
         this.page1 = res.results;
         for (let x in this.page1){
           let ocarina = res.results[x].genre_ids
             for (let y in ocarina){
               if(ocarina[y]==idgenre) this.movieGenre.push(res.results[x])
-            }         
+            }
         }
 
-        
+        //esto es para buscar por genero
         localStorage.setItem('muvi',JSON.stringify(this.movieGenre))
         localStorage.setItem('muvigen',genr)
-
-        /* JSON.parse() */
-        
-
-       
         
       }, err => {
         console.log(err);
       });
+    }
   }
 
 
   //====================================page2
-  async usePage2() {
-    await this.fesh.getPage2()
+  async usePage2(idgenre, genr) {
+
+    if(idgenre==null){ console.log("2")
+      await this.fesh.getPage2()
       .subscribe(res => {
-        this.page2 = res.results;
-    /* console.log(this.page2); */
+        this.allmovies.push(res.results)
+        localStorage.setItem('allmovies',JSON.stringify(this.allmovies))
       }, err => {
         console.log(err);
       });
+    }
+
+    else{
+    await this.fesh.getPage2()
+      .subscribe(res => {
+        this.page2 = res.results;
+        for (let x in this.page2){
+          let ocarina = res.results[x].genre_ids
+            for (let y in ocarina){
+              if(ocarina[y]==idgenre) this.movieGenre.push(res.results[x])
+            }
+        }
+
+        //esto es para buscar por genero
+        localStorage.setItem('muvi',JSON.stringify(this.movieGenre))
+        localStorage.setItem('muvigen',genr)
+      }, err => {
+        console.log(err);
+      });
+    }
   }
 
     //====================================page3
-    async usePage3() {
+    async usePage3(idgenre, genr) {
+
+
+      if(idgenre==null){console.log("3")
+        await this.fesh.getPage3()
+        .subscribe(res => {
+          this.allmovies.push(res.results)
+          localStorage.setItem('allmovies',JSON.stringify(this.allmovies))
+        }, err => {
+          console.log(err);
+        });
+      }
+
+      else{
       await this.fesh.getPage3()
         .subscribe(res => {
 
           this.page3 = res.results;
-      /* console.log(this.page3); */
+          for (let x in this.page3){
+            let ocarina = res.results[x].genre_ids
+              for (let y in ocarina){
+                if(ocarina[y]==idgenre) this.movieGenre.push(res.results[x])
+              }
+          }
+  
+          //esto es para buscar por genero
+          localStorage.setItem('muvi',JSON.stringify(this.movieGenre))
+          localStorage.setItem('muvigen',genr)
         }, err => {
           console.log(err);
         });
+      }
     }
 
       //====================================page4
-  async usePage4() {
-    await this.fesh.getPage4()
+  async usePage4(idgenre, genr) {
+
+    if(idgenre==null){console.log("4")
+      await this.fesh.getPage4()
       .subscribe(res => {
-        this.page4 = res.results;
-    /* console.log(this.page4); */
+        this.allmovies.push(res.results)
+        localStorage.setItem('allmovies',JSON.stringify(this.allmovies))
       }, err => {
         console.log(err);
       });
-  }
-
-    //====================================page5
-    async usePage5() {
-      await this.fesh.getPage5()
-        .subscribe(res => {
-          this.page5 = res.results;
-      /* console.log(this.page5); */
-        }, err => {
-          console.log(err);
-        });
     }
 
 
+    else{
+    await this.fesh.getPage4()
+      .subscribe(res => {
+        this.page4 = res.results;
+        for (let x in this.page4){
+          let ocarina = res.results[x].genre_ids
+            for (let y in ocarina){
+              if(ocarina[y]==idgenre) this.movieGenre.push(res.results[x])
+            }
+        }
+
+        //esto es para buscar por genero
+        localStorage.setItem('muvi',JSON.stringify(this.movieGenre))
+        localStorage.setItem('muvigen',genr)
+      }, err => {
+        console.log(err);
+      });
+    }
+  }
+
+    //====================================page5
+    async usePage5(idgenre, genr) {
+
+      if(idgenre==null){console.log("5")
+        await this.fesh.getPage5()
+        .subscribe(res => {
+          this.allmovies.push(res.results)
+          localStorage.setItem('allmovies',JSON.stringify(this.allmovies))
+        }, err => {
+          console.log(err);
+        });
+      }
+
+      else{
+      await this.fesh.getPage5()
+        .subscribe(res => {
+          this.page5 = res.results;
+          for (let x in this.page5){
+            let ocarina = res.results[x].genre_ids
+              for (let y in ocarina){
+                if(ocarina[y]==idgenre) this.movieGenre.push(res.results[x])
+              }
+          }
+  
+          //esto es para buscar por genero
+          localStorage.setItem('muvi',JSON.stringify(this.movieGenre))
+          localStorage.setItem('muvigen',genr)
+        }, err => {
+          console.log(err);
+        });
+      }
+    }
+
+
+    
+
     search(){
-      window.location.href = '/home/search'
+
+      
+        this.usePage1(null, null)
+        this.usePage2(null, null)
+        this.usePage3(null, null)
+        this.usePage4(null, null)
+        this.usePage5(null, null)
+        window.location.href = "/home/search"
+        
+  
+      
+      
     }
 
 
@@ -157,10 +270,10 @@ export class HomePage implements OnInit{
 
   getMoviesGenre(genero, id){
     this.usePage1(id, genero)
-    this.usePage2()
-    this.usePage3()
-    this.usePage4()
-    this.usePage5()
+    this.usePage2(id, genero)
+    this.usePage3(id, genero)
+    this.usePage4(id, genero)
+    this.usePage5(id, genero)
 
 
     window.location.href = '/home/genre';
