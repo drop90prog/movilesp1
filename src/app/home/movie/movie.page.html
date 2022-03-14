@@ -28,21 +28,37 @@
     </ion-row>
     <ion-row >
 
-      <ion-col class="ion-text-center">
-        <p>rate: {{movie.vote_average}}</p>
+      <ion-col class="ion-text-center" (click)=changeNewVoteAverageIsOn()>
+        <p *ngIf="!newVoteAverageIsOn">rate: {{movie.vote_average}}</p>
+        <p *ngIf="newVoteAverageIsOn">rate: {{newVoteAverage}}</p>
       </ion-col>       
 
-          <ion-button>up</ion-button>
-          <ion-button>down</ion-button>
+      <div>
+        <div>
+          <ngb-rating [max]="10" [(rate)]="currentRate" [readonly]="false" ></ngb-rating>
+        </div>
+        <div style="display: flex;">
+          <div>
+            <ion-text *ngIf="currentRate!=0">{{currentRate}}</ion-text>
+            <ion-text *ngIf="currentRate==0">Vote now!</ion-text>
+          </div>
+          <div style="height: 20px; width:80px; margin-left: 10px; font-size: small;" (click)="deleteVote()">
+            <ion-text *ngIf="currentRate!=0" >remove vote</ion-text>
+          </div>
+        </div>         
+      </div>
 
-        <ion-col class="ion-text-center">
-          <p>votes: {{movie.vote_count}}</p>
+
+        <ion-col class="ion-text-center" (click)="saveRating()">
+
+          <p *ngIf="!newVoteAverageIsOn">votes: {{movie.vote_count}}</p>
+          <p *ngIf="newVoteAverageIsOn">votes: {{newVoteVoters}}</p>
         </ion-col>        
 
     </ion-row>
   </ion-grid>
 
-  <ion-row>
+  <ion-row (click)="refresh()">
     <ion-col>
       <p style="font-weight: bold">Comments</p> 
     </ion-col>    

@@ -53,12 +53,13 @@ api.post('/findcomments', commentCtrl.findComments)
 
 
 
+//==========================================================RATINGS
 
+const ratingCtrl = require ('../controllers/ratings')
 
-
-
-
-
+api.post('/saverating', ratingCtrl.saveRating)
+api.post('/findrating', ratingCtrl.findRating)
+api.delete('/deleterating', ratingCtrl.deleteRating)
 
 
 

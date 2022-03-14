@@ -22,6 +22,9 @@ export class MoviePage implements OnInit {
 
   movie:any;
 
+  currentRate = 0;
+  
+
   constructor() { }
   
   ngOnInit() {
@@ -33,6 +36,17 @@ export class MoviePage implements OnInit {
     this.username =iusername.name 
     this.ideuser = iusername.sub
     this.getComments()
+    this.getRatings()
+
+
+
+    
+    
+
+    
+
+    
+
     
   }
 
@@ -118,6 +132,138 @@ export class MoviePage implements OnInit {
       }) 
       .catch(error => console.error('Error:', error))
   }
+
+
+
+newVoteAverageIsOn:boolean = false;
+changeNewVoteAverageIsOn(){
+  this.newVoteAverageIsOn = !this.newVoteAverageIsOn
+}
+
+  ratingsGotten=[]
+  ratings=[]
+  newVoteAverage;
+  newVoteVoters;
+
+
+
+  getRatings(){
+
+    let info = {idmovie:this.movie.id}
+    let sumatoria = 0;
+
+/*     fetch('http://localhost:3000/findrating', { */
+      fetch('https://movilesp1.herokuapp.com/findrating', {
+      method: 'POST', 
+      body: JSON.stringify(info), 
+      headers:{            
+          'Content-Type': 'application/json'
+      }
+      }).then(res =>{ 
+      
+        if(res.status==200) {   
+          
+          res.json().then((data) => {            
+           
+            if(data.resultado.length>0){
+              
+              for (let a in data.resultado){
+/*                 this.ratingsGotten.push({
+                  user: data.resultado[a].username,
+                  rating: data.resultado[a].rate
+                }) */
+                this.ratings.push(data.resultado[a].rate)
+                sumatoria+=data.resultado[a].rate
+                //para que no pueda votar mas de 1 vez el user
+                if(data.resultado[a].iduser==this.ideuser)this.currentRate=data.resultado[a].rate
+              }
+
+            }
+
+            this.newVoteAverage=((sumatoria)/this.ratings.length).toFixed(1)
+            this.newVoteVoters = this.ratings.length
+            
+          })     
+        }
+
+      }) 
+      .catch(error => console.error('Error:', error))
+
+  }
+
+
+
+  saveRating(){
+
+    let info = {idmovie:this.movie.id, iduser:this.ideuser, username:this.username, rate:this.currentRate };
+
+/*     fetch('http://localhost:3000/saverating', { */
+    fetch('https://movilesp1.herokuapp.com/savecomment', {
+      method: 'POST', 
+      body: JSON.stringify(info), 
+      headers:{            
+          'Content-Type': 'application/json'
+      }
+      }).then(res =>{ 
+      
+        if(res.status==200) {   
+          
+          res.json().then((data) => {
+            alert(data.message)
+            location.reload()
+            
+          })     
+        }
+      
+      }) 
+      .catch(error => console.error('Error:', error))
+  }
+
+
+  deleteVote(){
+
+    let info = {idmovie:this.movie.id, iduser:this.ideuser};
+
+/*     fetch('http://localhost:3000/deleterating', { */
+    fetch('https://movilesp1.herokuapp.com/savecomment', {
+      method: 'DELETE', 
+      body: JSON.stringify(info), 
+      headers:{            
+          'Content-Type': 'application/json'
+      }
+      }).then(res =>{ 
+      
+        if(res.status==200) {   
+          
+          res.json().then((data) => {
+            alert(data.message)
+            this.currentRate=0
+            location.reload()
+            
+          })     
+        }
+      
+      }) 
+      .catch(error => console.error('Error:', error))
+  }
+
+
+
+  refresh(){
+    location.reload()
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
