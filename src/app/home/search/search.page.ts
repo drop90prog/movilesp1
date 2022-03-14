@@ -40,7 +40,11 @@ export class SearchPage implements OnInit {
   }
 
 
+  back(){
+    localStorage.removeItem('allmovies')
+    window.location.href = '/home'
 
+  }
 
 
 

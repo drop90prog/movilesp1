@@ -198,7 +198,7 @@ changeNewVoteAverageIsOn(){
     let info = {idmovie:this.movie.id, iduser:this.ideuser, username:this.username, rate:this.currentRate };
 
 /*     fetch('http://localhost:3000/saverating', { */
-    fetch('https://movilesp1.herokuapp.com/savecomment', {
+    fetch('https://movilesp1.herokuapp.com/saverating', {
       method: 'POST', 
       body: JSON.stringify(info), 
       headers:{            
@@ -225,7 +225,7 @@ changeNewVoteAverageIsOn(){
     let info = {idmovie:this.movie.id, iduser:this.ideuser};
 
 /*     fetch('http://localhost:3000/deleterating', { */
-    fetch('https://movilesp1.herokuapp.com/savecomment', {
+    fetch('https://movilesp1.herokuapp.com/deleterating', {
       method: 'DELETE', 
       body: JSON.stringify(info), 
       headers:{            

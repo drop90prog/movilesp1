@@ -30,7 +30,11 @@ export class GenrePage implements OnInit {
 
 
 
+  back(){
+    localStorage.removeItem('muvigen')
+    window.location.href = '/home'
 
+  }
 
 
 
