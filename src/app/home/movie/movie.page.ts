@@ -254,26 +254,15 @@ changeNewVoteAverageIsOn(){
     location.reload()
   }
 
+  fetchUser(iduserr, usernameDelComentario){
 
-
-
-
-
-  fetchUser(iduser){
-
-
-
+    if(iduserr!=this.ideuser)localStorage.setItem('perfilde',usernameDelComentario)
+    //iduserr = id del user del comentario
+    //this.ideuser = id del usuario logeado(sacado del token)
     const lab = async()=>{
-    
-    
-    
-    
-    
-    
-      console.log(iduser)
-        
+
       
-      let info = {iduser:this.ideuser};
+      let info = {iduser:iduserr};
     
          await fetch('http://localhost:3000/find5lastcomments', {
     /*       fetch('https://movilesp1.herokuapp.com/find5lastcomments', { */

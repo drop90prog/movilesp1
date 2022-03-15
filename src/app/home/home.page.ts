@@ -337,18 +337,18 @@ export class HomePage implements OnInit{
 
 
 
-  fetchUser(iduser){
+  fetchUser(){
+
+  
+
+  const lab = async()=>{
 
 
 
-const lab = async()=>{
 
 
 
-
-
-
-  console.log(iduser)
+ 
     
   
   let info = {iduser:this.ideuser};

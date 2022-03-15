@@ -26,7 +26,8 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     let fd=localStorage.getItem('token')
     let iusername = helper.decodeToken(fd);
-    this.username =iusername.name 
+    if(!localStorage.getItem('perfilde'))this.username =iusername.name
+    else {this.username = localStorage.getItem('perfilde'); this.editIsPrivate=true}
 
     this.lastcomments = JSON.parse(localStorage.getItem('lastcomments'))
     this.lastratings = JSON.parse(localStorage.getItem('lastratings'))
@@ -104,6 +105,7 @@ back(){
   localStorage.removeItem('lastratings')
   localStorage.removeItem('checkboxes')
   localStorage.removeItem('movie')
+  if(localStorage.getItem('perfilde'))localStorage.removeItem('perfilde')
   window.location.href = "/home"
 
 }
