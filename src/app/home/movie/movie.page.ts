@@ -288,15 +288,17 @@ changeNewVoteAverageIsOn(){
                 
                 res.json().then((data) => {
                   
-    
+                  let contador=0
                   let er = []
                   let regresivo = data.resultado.length-1
-                  for(let i=0; i<5; i++){
+                  for(let i=0; i<data.resultado.length; i++){
                     er.push({
                       movie: data.resultado[regresivo].moviename,
                       comment: data.resultado[regresivo].comment
                     })
-                    regresivo--                
+                    regresivo-- 
+                    contador++
+                    if(contador==5)break
                   }
                   localStorage.setItem('lastcomments', JSON.stringify(er))
                   
@@ -323,14 +325,17 @@ changeNewVoteAverageIsOn(){
                   
                   res.json().then((data) => {                
       
+                    let contador=0
                     let er = []
                     let regresivo = data.resultado.length-1
-                    for(let i=0; i<5; i++){
+                    for(let i=0; i<data.resultado.length; i++){
                       er.push({
                         movie: data.resultado[regresivo].moviename,
                         rate: data.resultado[regresivo].rate
                       })
-                      regresivo--                
+                      regresivo--
+                      contador++
+                      if(contador==5)break
                     }
                     localStorage.setItem('lastratings', JSON.stringify(er))               
                     
