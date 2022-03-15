@@ -60,8 +60,8 @@ export class MoviePage implements OnInit {
 
     let info = {idmovie:this.movie.id}
 
-/*     fetch('http://localhost:3000/findcomments', { */
-      fetch('https://movilesp1.herokuapp.com/findcomments', {
+    fetch('http://localhost:3000/findcomments', {
+/*       fetch('https://movilesp1.herokuapp.com/findcomments', { */
       method: 'POST', 
       body: JSON.stringify(info), 
       headers:{            
@@ -78,7 +78,8 @@ export class MoviePage implements OnInit {
               for (let a in data.resultado){
                 this.comments.push({
                   user: data.resultado[a].username,
-                  comment: data.resultado[a].comment
+                  comment: data.resultado[a].comment,
+                  iduser: data.resultado[a].iduser
                 })               
               }             
             }
@@ -109,10 +110,10 @@ export class MoviePage implements OnInit {
 
   saveComments(){
 
-    let info = {idmovie:this.movie.id, iduser:this.ideuser, comment:this.komentario, username:this.username };
+    let info = {idmovie:this.movie.id, moviename:this.movie.original_title , iduser:this.ideuser, comment:this.komentario, username:this.username };
 
-/*     fetch('http://localhost:3000/savecomment', { */
-    fetch('https://movilesp1.herokuapp.com/savecomment', {
+    fetch('http://localhost:3000/savecomment', {
+/*     fetch('https://movilesp1.herokuapp.com/savecomment', { */
       method: 'POST', 
       body: JSON.stringify(info), 
       headers:{            
@@ -152,8 +153,8 @@ changeNewVoteAverageIsOn(){
     let info = {idmovie:this.movie.id}
     let sumatoria = 0;
 
-/*     fetch('http://localhost:3000/findrating', { */
-      fetch('https://movilesp1.herokuapp.com/findrating', {
+    fetch('http://localhost:3000/findrating', {
+/*       fetch('https://movilesp1.herokuapp.com/findrating', { */
       method: 'POST', 
       body: JSON.stringify(info), 
       headers:{            
@@ -195,10 +196,10 @@ changeNewVoteAverageIsOn(){
 
   saveRating(){
 
-    let info = {idmovie:this.movie.id, iduser:this.ideuser, username:this.username, rate:this.currentRate };
+    let info = {idmovie:this.movie.id, moviename: this.movie.original_title, iduser:this.ideuser, username:this.username, rate:this.currentRate };
 
-/*     fetch('http://localhost:3000/saverating', { */
-    fetch('https://movilesp1.herokuapp.com/saverating', {
+    fetch('http://localhost:3000/saverating', {
+/*     fetch('https://movilesp1.herokuapp.com/saverating', { */
       method: 'POST', 
       body: JSON.stringify(info), 
       headers:{            
@@ -224,8 +225,8 @@ changeNewVoteAverageIsOn(){
 
     let info = {idmovie:this.movie.id, iduser:this.ideuser};
 
-/*     fetch('http://localhost:3000/deleterating', { */
-    fetch('https://movilesp1.herokuapp.com/deleterating', {
+    fetch('http://localhost:3000/deleterating', {
+/*     fetch('https://movilesp1.herokuapp.com/deleterating', { */
       method: 'DELETE', 
       body: JSON.stringify(info), 
       headers:{            
@@ -258,7 +259,116 @@ changeNewVoteAverageIsOn(){
 
 
 
+fetchUser(iduser){
+  console.log(iduser)
 
+
+
+  let info = {iduser:this.ideuser};
+
+      fetch('http://localhost:3000/find5lastcomments', {
+/*       fetch('https://movilesp1.herokuapp.com/find5lastcomments', { */
+        method: 'post', 
+        body: JSON.stringify(info), 
+        headers:{            
+            'Content-Type': 'application/json'
+        }
+        }).then(res =>{ 
+        
+          if(res.status==200) {   
+            
+            res.json().then((data) => {
+              
+
+              let er = []
+              let regresivo = data.resultado.length-1
+              for(let i=0; i<5; i++){
+                er.push({
+                  movie: data.resultado[regresivo].moviename,
+                  comment: data.resultado[regresivo].comment
+                })
+                regresivo--                
+              }
+              localStorage.setItem('lastcomments', JSON.stringify(er))
+              
+            })//res.json.then
+          }//if(res.status==200)
+        
+        }) 
+        .catch(error => console.error('Error:', error))
+
+
+//=========================================================================
+
+
+fetch('http://localhost:3000/find5lastratings', {
+  /*       fetch('https://movilesp1.herokuapp.com/find5lastratings', { */
+          method: 'post', 
+          body: JSON.stringify(info), 
+          headers:{            
+              'Content-Type': 'application/json'
+          }
+          }).then(res =>{ 
+          
+            if(res.status==200) {   
+              
+              res.json().then((data) => {                
+  
+                let er = []
+                let regresivo = data.resultado.length-1
+                for(let i=0; i<5; i++){
+                  er.push({
+                    movie: data.resultado[regresivo].moviename,
+                    rate: data.resultado[regresivo].rate
+                  })
+                  regresivo--                
+                }
+                localStorage.setItem('lastratings', JSON.stringify(er))               
+                
+              })//res.json.then
+            }//if(res.status==200)
+          
+          }) 
+          .catch(error => console.error('Error:', error))
+
+
+
+
+//=========================================================================
+
+
+fetch('http://localhost:3000/getcheckboxes', {
+  /*       fetch('https://movilesp1.herokuapp.com/getcheckboxes', { */
+          method: 'post', 
+          body: JSON.stringify(info), 
+          headers:{            
+              'Content-Type': 'application/json'
+          }
+          }).then(res =>{ 
+          
+            if(res.status==200) {   
+              
+              res.json().then((data) => {
+                console.log(data)   
+                
+                let er = [{
+                  showTopFavorites: data.showTopFavorites,
+                  showLastComments: data.showLastComments,
+                  showLastRatings: data.showLastRatings,
+                }]
+
+                localStorage.setItem('checkboxes', JSON.stringify(er))
+                
+              })//res.json.then
+            }//if(res.status==200)
+          
+          }) 
+          .catch(error => console.error('Error:', error))
+
+
+          window.location.href = '/home/profile'
+
+}//fetchuser
 
 
 

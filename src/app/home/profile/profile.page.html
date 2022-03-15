@@ -8,20 +8,18 @@
 </ion-header>
 
 <ion-content>
-  <div class="content">
+  <div class="content" >
     <div class="uno">
-      <div class="foto">
-        
-        <ion-img src="../../../assets/img/perfil.png"></ion-img>
-          
-        
+      <div class="foto">        
+        <ion-img src="../../../assets/img/perfil.png"></ion-img>           
       </div>
       <div class="nombre">
         <ion-label style="font-size: large;">{{username}}</ion-label>
       </div>
     </div>
 
-    <div class="dos">
+  <ion-card>    
+    <div class="dos" *ngIf="!editIsPrivate">
       <div class="editar-perfil"> 
         <ion-icon style="padding: 12px;" size="large" name="pencil-outline"></ion-icon>       
         <ion-text color="black">
@@ -42,15 +40,133 @@
         <ion-item >
           <ion-label>Contraseña: </ion-label>
           <ion-input [(ngModel)]="password" type="password" ></ion-input>
-        </ion-item>
-
+        </ion-item> 
         
-          <ion-button (click)="guardarCambios()" color="light">Guardar cambios</ion-button>
+        <div class="ion-padding-top">       
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                
+                <div>
+                  <div>
+                    <ion-checkbox [(ngModel)]="showLastComments"></ion-checkbox>
+                    <ion-label> Show last comments</ion-label>
+                  </div>
+                  <div style="margin-top: 8px;">
+                    <ion-checkbox [(ngModel)]="showLastRatings"></ion-checkbox>
+                    <ion-label> Show last ratings</ion-label>
+                  </div>
+                </div>
+                
+              </ion-col>    
+            </ion-row>
+          </ion-grid>
+        </div>
 
 
-         
+
+
+
+
+
+
+          <ion-button (click)="guardarCambios()" color="light">Guardar cambios</ion-button>         
       </div>
     </div>
+  </ion-card>
+
+
+<!-- Top 5 favorite movies -->
+<div *ngIf="showTopFavorites">
+  <ion-card>
+    <ion-row>
+      <ion-col class="ion-text-center" style="font-size: large;">
+        <ion-list>
+          <ion-text style="font-weight: bold">Top 5 favorite movies</ion-text>
+          <ion-item *ngFor="let com of jejejexd">
+
+            <ion-text style="font-weight: bold">nombre de la pelicula</ion-text>
+
+          </ion-item>
+        </ion-list>      
+      </ion-col>    
+    </ion-row>
+  </ion-card>
+</div>
+
+<!-- 5 Last comments -->
+    <div *ngIf="showLastComments">
+      <ion-card>
+        <ion-row>
+          <ion-col class="ion-text-center" style="font-size: large;">
+            <ion-list>
+              <ion-text style="font-weight: bold">5 Last Comments</ion-text>
+              <ion-item *ngFor="let x of lastcomments">
+                <div style="display: inline-block;">
+                  <div>
+                    <ion-text style="font-weight: bold">Movie: {{x.movie}}</ion-text>
+                  </div>
+                  <div>
+                    <ion-text style="margin-left: 10px;">{{x.comment}}</ion-text>
+                  </div>
+                </div>               
+              </ion-item>
+            </ion-list>      
+          </ion-col>    
+        </ion-row>
+      </ion-card>
+    </div>
+
+
+<!-- 5 last ratings -->
+    <div *ngIf="showLastRatings">
+      <ion-card>
+        <ion-row>
+          <ion-col class="ion-text-center" style="font-size: large;">
+            <ion-list>
+              <ion-text style="font-weight: bold">5 Last Ratings</ion-text>
+              <ion-item *ngFor="let x of lastratings">
+
+                <div style="display: inline-block;">
+                  <div>
+                    <ion-text style="font-weight: bold">{{x.movie}}</ion-text>
+                  </div>
+                  <div>
+                    <ngb-rating [max]="10" [(rate)]="x.rate" [readonly]="true" ></ngb-rating>
+                    <ion-text style="font-weight: bold; margin-left: 8px;">{{x.rate}} stars</ion-text>
+                  </div>               
+                </div>         
+
+              </ion-item>
+            </ion-list>      
+          </ion-col>    
+        </ion-row>
+      </ion-card>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
   </div>
 
 </ion-content>

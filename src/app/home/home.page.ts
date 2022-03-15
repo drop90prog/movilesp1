@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchService } from '../fetch.service';
 
+import { JwtHelperService } from "@auth0/angular-jwt";
+
+const helper = new JwtHelperService();
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -17,11 +21,24 @@ export class HomePage implements OnInit{
   page4: any;
   page5: any;
   movieGenre = []
+
+  ideuser
   
   constructor(private fesh: FetchService) {   }
 
   ngOnInit(){
-    this.useMovieData();    
+    this.useMovieData();
+
+
+    let ls=localStorage.getItem('token')
+    let iusername = helper.decodeToken(ls);
+    this.ideuser = iusername.sub
+
+
+
+
+
+
   }//end of ngOnInit
 
 
@@ -292,4 +309,220 @@ export class HomePage implements OnInit{
     window.location.href = '/signin';
   }
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  fetchUser(iduser){
+    console.log(iduser)
+    
+  
+    let info = {iduser:this.ideuser};
+  
+        fetch('http://localhost:3000/find5lastcomments', {
+  /*       fetch('https://movilesp1.herokuapp.com/find5lastcomments', { */
+          method: 'post', 
+          body: JSON.stringify(info), 
+          headers:{            
+              'Content-Type': 'application/json'
+          }
+          }).then(res =>{ 
+          
+            if(res.status==200) {   
+              
+              res.json().then((data) => {
+                
+  
+                let er = []
+                let regresivo = data.resultado.length-1
+                for(let i=0; i<5; i++){
+                  er.push({
+                    movie: data.resultado[regresivo].moviename,
+                    comment: data.resultado[regresivo].comment
+                  })
+                  regresivo--                
+                }
+                localStorage.setItem('lastcomments', JSON.stringify(er))
+                
+              })//res.json.then
+            }//if(res.status==200)
+          
+          }) 
+          .catch(error => console.error('Error:', error))
+  
+  
+  //=========================================================================
+  
+  
+  fetch('http://localhost:3000/find5lastratings', {
+    /*       fetch('https://movilesp1.herokuapp.com/find5lastratings', { */
+            method: 'post', 
+            body: JSON.stringify(info), 
+            headers:{            
+                'Content-Type': 'application/json'
+            }
+            }).then(res =>{ 
+            
+              if(res.status==200) {   
+                
+                res.json().then((data) => {                
+    
+                  let er = []
+                  let regresivo = data.resultado.length-1
+                  for(let i=0; i<5; i++){
+                    er.push({
+                      movie: data.resultado[regresivo].moviename,
+                      rate: data.resultado[regresivo].rate
+                    })
+                    regresivo--                
+                  }
+                  localStorage.setItem('lastratings', JSON.stringify(er))               
+                  
+                })//res.json.then
+              }//if(res.status==200)
+            
+            }) 
+            .catch(error => console.error('Error:', error))
+  
+  
+  
+  
+  //=========================================================================
+  
+  
+  fetch('http://localhost:3000/getcheckboxes', {
+    /*       fetch('https://movilesp1.herokuapp.com/getcheckboxes', { */
+            method: 'post', 
+            body: JSON.stringify(info), 
+            headers:{            
+                'Content-Type': 'application/json'
+            }
+            }).then(res =>{ 
+            
+              if(res.status==200) {   
+                
+                res.json().then((data) => {
+                  console.log(data)   
+                  
+                  let er = [{
+                    showTopFavorites: data.showTopFavorites,
+                    showLastComments: data.showLastComments,
+                    showLastRatings: data.showLastRatings,
+                  }]
+  
+                  localStorage.setItem('checkboxes', JSON.stringify(er))
+                  
+                })//res.json.then
+              }//if(res.status==200)
+            
+            }) 
+            .catch(error => console.error('Error:', error))
+  
+  
+            window.location.href = '/home/profile'
+  
+  }//fetchuser
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}//class

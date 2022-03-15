@@ -8,12 +8,15 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
 
 import { ProfilePage } from './profile.page';
 
+import { NgbRatingModule} from '@ng-bootstrap/ng-bootstrap'; 
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ProfilePageRoutingModule
+    ProfilePageRoutingModule,
+    NgbRatingModule
   ],
   declarations: [ProfilePage]
 })

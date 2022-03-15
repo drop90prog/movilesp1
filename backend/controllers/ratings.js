@@ -17,6 +17,7 @@ function saveRating(req, res){
             const rating = new Rating({
         
                 idmovie: req.body.idmovie,
+                moviename: req.body.moviename,
                 iduser: req.body.iduser,
                 username: req.body.username,
                 rate: req.body.rate,
@@ -52,6 +53,22 @@ function findRating(req, res){
 }
 
 
+function find5LastRatings(req, res){
+
+    Rating.find({iduser: req.body.iduser}, (err,result)=>{
+
+        if(err)return res.status(404).send({
+            message:'errorrrrr'            
+        })  
+
+        if(result){
+            return res.status(200).send({resultado:result})
+        } 
+        
+    })//Rating.find
+}
+
+
 function deleteRating (req,res) {
     console.log(req.body.id)   
 
@@ -68,6 +85,7 @@ module.exports = {
     saveRating,
     findRating,
     deleteRating,
+    find5LastRatings
     
 }
 

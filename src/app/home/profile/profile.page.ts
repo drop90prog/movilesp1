@@ -17,14 +17,32 @@ export class ProfilePage implements OnInit {
 
    username: string
 
+   lastcomments;
+   lastratings;
+   checkboxes;
+
+
+
   ngOnInit() {
     let fd=localStorage.getItem('token')
     let iusername = helper.decodeToken(fd);
     this.username =iusername.name 
+
+    this.lastcomments = JSON.parse(localStorage.getItem('lastcomments'))
+    this.lastratings = JSON.parse(localStorage.getItem('lastratings'))
+    this.checkboxes = JSON.parse(localStorage.getItem('checkboxes'))
+    /* console.log(this.checkboxes[0].showTopFavorites) */
+    this.showTopFavorites = this.checkboxes[0].showTopFavorites
+    this.showLastComments = this.checkboxes[0].showLastComments
+    this.showLastRatings = this.checkboxes[0].showLastRatings
+
   }
 
 
-
+  editIsPrivate:boolean = false;
+  showTopFavorites:boolean = false
+  showLastComments:boolean = true;
+  showLastRatings:boolean = true;
 
 
   email:string; name:string; password:string;
@@ -34,11 +52,19 @@ export class ProfilePage implements OnInit {
     let decodedToken = helper.decodeToken(d);
     
 
-    let account = { id:decodedToken.sub, email:this.email, name:this.name, password:this.password};
+    let account = { 
+      id:decodedToken.sub, 
+      email:this.email, 
+      name:this.name, 
+      password:this.password, 
+      showTopFavorites: this.showTopFavorites,
+      showLastComments:this.showLastComments,
+      showLastRatings: this.showLastRatings,
+    };
 
     console.log(account)
-/*     fetch('http://localhost:3000/update', { */
-    fetch('https://movilesp1.herokuapp.com/update', {
+    fetch('http://localhost:3000/update', {
+/*     fetch('https://movilesp1.herokuapp.com/update', { */
       method: 'PUT', 
       body: JSON.stringify(account), 
       headers:{            
@@ -70,17 +96,6 @@ export class ProfilePage implements OnInit {
     signout(){
       localStorage.clear()
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -17,6 +17,7 @@ api.post('/signup', userCtrl.signup)
 api.post('/signin', userCtrl.signin)
 api.put('/update', userCtrl.updateUser)
 api.delete('/down', userCtrl.deleteStuff)
+api.post('/getcheckboxes', userCtrl.getCheckBoxes)
 
 
 
@@ -49,6 +50,7 @@ const commentCtrl = require ('../controllers/comments')
 
 api.post('/savecomment', commentCtrl.saveComment)
 api.post('/findcomments', commentCtrl.findComments)
+api.post('/find5lastcomments', commentCtrl.find5LastComments)
 
 
 
@@ -60,6 +62,7 @@ const ratingCtrl = require ('../controllers/ratings')
 api.post('/saverating', ratingCtrl.saveRating)
 api.post('/findrating', ratingCtrl.findRating)
 api.delete('/deleterating', ratingCtrl.deleteRating)
+api.post('/find5lastratings', ratingCtrl.find5LastRatings)
 
 
 

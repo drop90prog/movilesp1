@@ -5,6 +5,7 @@ const crypto = require('crypto')
 
 const UserSchema = new Schema({
     idmovie: Number,
+    moviename: String,
     iduser: String,
     comment: String,
     username: String,

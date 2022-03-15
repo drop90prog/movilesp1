@@ -12,6 +12,9 @@ function signup (req, res) {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
+        showTopFavorites: false,
+        showLastComments: false,
+        showLastRatings: false, 
         avatar: 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y',
     })
 
@@ -87,38 +90,47 @@ function signin (req, res) {
 
 }//updatePicture
 
-function updateUser (req, res) {  
+function updateUser (req, res) {    
 
 
-    function cambio(){
+   
+
+        
         if(req.body.name)
         User.findByIdAndUpdate(req.body.id,{"name": req.body.name }, function(err, result){
             
         })       
     
-    if(req.body.email)        
-        User.findByIdAndUpdate(req.body.id,{"email": req.body.email }, function(err, result){       
+        if(req.body.email)        
+            User.findByIdAndUpdate(req.body.id,{"email": req.body.email }, function(err, result){       
+                
+        })
+        
+        if(req.body.password)
+            User.findByIdAndUpdate(req.body.id,{"password": req.body.password }, function(err, result){       
+                
+        })
+        
+
+        User.findByIdAndUpdate(req.body.id,{"showTopFavorites": req.body.showTopFavorites }, (err, result)=>{
+            
+        })        
+        
+        User.findByIdAndUpdate(req.body.id,{"showLastComments": req.body.showLastComments }, (err, result)=>{
+                
+        })
+
+        
+        User.findByIdAndUpdate(req.body.id,{"showLastRatings": req.body.showLastRatings }, (err, result)=>{      
             
         })
-    
-    if(req.body.password)
-        User.findByIdAndUpdate(req.body.id,{"password": req.body.password }, function(err, result){       
-            
-        })
-    }
 
 
-    const t = async()=>{
-        await cambio()
+    const t = async()=>{       
 
-        if(!req.body.name && !req.body.email && !req.body.password)
-        return res.status(200).send({
-            message:'Please fill the fields'        
-        })
-    
-        else{
+
             User.findById(req.body.id, (err, user)=> {
-                console.log(user)
+                console.log("4")
                     return res.status(200).send({
                         message:'Successfully updated',
                         token: service.createToken(user)
@@ -126,7 +138,7 @@ function updateUser (req, res) {
                 
             })//user.findOne  
         
-        }
+  
 
 
     }
@@ -151,10 +163,31 @@ function deleteStuff (req,res) {
     })    
 }
 
+
+
+
+function getCheckBoxes (req, res) {
+
+    User.findById(req.body.iduser, (err, user)=> {
+
+        return res.status(200).send({
+            showTopFavorites: user.showTopFavorites,
+            showLastComments: user.showLastComments,
+            showLastRatings: user.showLastRatings,
+        })
+    }) 
+     
+}//getCheckBoxes
+
+
+
+
+
 module.exports = {
     signup,
     signin,
     updatePicture,
     updateUser,
-    deleteStuff
+    deleteStuff,
+    getCheckBoxes,
 }

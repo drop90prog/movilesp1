@@ -4,11 +4,12 @@ const Comment = require('../models/comments')
 
 
 function saveComment(req, res){   
-    
+
     console.log(req.body)
 
     const komentario = new Comment({
         idmovie: req.body.idmovie,
+        moviename: req.body.moviename,
         iduser: req.body.iduser,
         comment: req.body.comment,
         username: req.body.username,
@@ -37,6 +38,21 @@ function findComments(req, res){
 }
 
 
+function find5LastComments(req, res){
+
+    
+    Comment.find({iduser: req.body.iduser}, (err,result)=>{
+
+        if(err)return res.status(404).send({
+            message:'errorrrrr'            
+        })  
+
+        if(result){
+            return res.status(200).send({resultado:result})
+        } 
+        
+    })//Comment.find
+}
 
 
 
@@ -45,6 +61,7 @@ function findComments(req, res){
 module.exports = {
     saveComment,
     findComments,
+    find5LastComments,
 }
 
 
