@@ -98,7 +98,15 @@ export class ProfilePage implements OnInit {
     }
 
 
+back(){
 
+  localStorage.removeItem('lastcomments')
+  localStorage.removeItem('lastratings')
+  localStorage.removeItem('checkboxes')
+  localStorage.removeItem('movie')
+  window.location.href = "/home"
+
+}
 
 
 
