@@ -8,7 +8,7 @@ const UserSchema = new Schema({
     email: { type: String, unique: true, lowercase: true},
     password: { type: String, select: false },
     avatar: String,
-    showTopFavorites: Boolean,
+    showLastFavorites: Boolean,
     showLastComments:Boolean,
     showLastRatings: Boolean,    
     signupDate: {type: Date, default: Date.now()},

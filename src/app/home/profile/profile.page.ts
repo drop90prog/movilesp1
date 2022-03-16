@@ -17,6 +17,7 @@ export class ProfilePage implements OnInit {
 
    username: string
 
+   favorites;
    lastcomments;
    lastratings;
    checkboxes;
@@ -29,11 +30,12 @@ export class ProfilePage implements OnInit {
     if(!localStorage.getItem('perfilde'))this.username =iusername.name
     else {this.username = localStorage.getItem('perfilde'); this.editIsPrivate=true}
 
+    this.favorites = JSON.parse(localStorage.getItem('favorites'))
     this.lastcomments = JSON.parse(localStorage.getItem('lastcomments'))
     this.lastratings = JSON.parse(localStorage.getItem('lastratings'))
     this.checkboxes = JSON.parse(localStorage.getItem('checkboxes'))
-    /* console.log(this.checkboxes[0].showTopFavorites) */
-    this.showTopFavorites = this.checkboxes[0].showTopFavorites
+    
+    this.showLastFavorites = this.checkboxes[0].showLastFavorites
     this.showLastComments = this.checkboxes[0].showLastComments
     this.showLastRatings = this.checkboxes[0].showLastRatings
 
@@ -41,7 +43,7 @@ export class ProfilePage implements OnInit {
 
 
   editIsPrivate:boolean = false;
-  showTopFavorites:boolean = false
+  showLastFavorites:boolean = false;
   showLastComments:boolean = true;
   showLastRatings:boolean = true;
 
@@ -58,7 +60,7 @@ export class ProfilePage implements OnInit {
       email:this.email, 
       name:this.name, 
       password:this.password, 
-      showTopFavorites: this.showTopFavorites,
+      showLastFavorites: this.showLastFavorites,
       showLastComments:this.showLastComments,
       showLastRatings: this.showLastRatings,
     };
@@ -100,7 +102,7 @@ export class ProfilePage implements OnInit {
 
 
 back(){
-
+  localStorage.removeItem('favorites')
   localStorage.removeItem('lastcomments')
   localStorage.removeItem('lastratings')
   localStorage.removeItem('checkboxes')

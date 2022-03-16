@@ -58,8 +58,11 @@ function findFavorites(req, res){
             message:'errorrrrr'            
         })  
 
-        if(result){
+        if(result.length>0){
             return res.status(200).send({resultado:result})
+        }
+        if(result.length==0){
+            return res.status(404).send({message:"not found"})
         }
         
     })//Rating.find

@@ -12,7 +12,7 @@ function signup (req, res) {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
-        showTopFavorites: false,
+        showLastFavorites: false,
         showLastComments: false,
         showLastRatings: false, 
         avatar: 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y',
@@ -112,7 +112,7 @@ function updateUser (req, res) {
         })
         
 
-        User.findByIdAndUpdate(req.body.id,{"showTopFavorites": req.body.showTopFavorites }, (err, result)=>{
+        User.findByIdAndUpdate(req.body.id,{"showLastFavorites": req.body.showLastFavorites }, (err, result)=>{
             
         })        
         
@@ -171,7 +171,7 @@ function getCheckBoxes (req, res) {
     User.findById(req.body.iduser, (err, user)=> {
 
         return res.status(200).send({
-            showTopFavorites: user.showTopFavorites,
+            showLastFavorites: user.showLastFavorites,
             showLastComments: user.showLastComments,
             showLastRatings: user.showLastRatings,
         })

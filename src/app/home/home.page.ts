@@ -401,7 +401,7 @@ export class HomePage implements OnInit{
           
             if(res.status==200) {   
               
-              res.json().then((data) => {                
+              res.json().then((data) => {
                 let contador = 0
                 let er = []
                 let regresivo = data.resultado.length-1
@@ -440,10 +440,10 @@ await fetch('http://localhost:3000/getcheckboxes', {
             if(res.status==200) {   
               
               res.json().then((data) => {
-                console.log(data)   
+                 
                 
                 let er = [{
-                  showTopFavorites: data.showTopFavorites,
+                  showLastFavorites: data.showLastFavorites,
                   showLastComments: data.showLastComments,
                   showLastRatings: data.showLastRatings,
                 }]
@@ -457,7 +457,52 @@ await fetch('http://localhost:3000/getcheckboxes', {
           .catch(error => console.error('Error:', error))
 
 
-          window.location.href = '/home/profile'
+
+//=========================================================================
+
+
+await fetch('http://localhost:3000/findfavorites', {
+  /*       fetch('https://movilesp1.herokuapp.com/findfavorites', { */
+      method: 'POST', 
+      body: JSON.stringify(info), 
+      headers:{
+          'Content-Type': 'application/json'
+      }
+      }).then(res =>{ 
+
+        if(res.status==200) {    
+          res.json().then((data) => {
+            
+
+            if(data.resultado.length>0){
+
+
+              
+              let favoritos = []
+              let regresivo = data.resultado.length-1
+              for(let i=0; i<data.resultado.length; i++){
+                favoritos.push({
+                  movie: data.resultado[regresivo].moviename,
+                })
+                regresivo--                
+                
+              }
+              localStorage.setItem('favorites', JSON.stringify(favoritos)) 
+
+              
+          }
+  
+  
+          })    
+          
+        }
+      
+      }) 
+      .catch(error => console.error('Error:', error))
+
+
+      window.location.href = '/home/profile'
+      
 
 
 
