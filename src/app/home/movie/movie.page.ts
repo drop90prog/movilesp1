@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { DomSanitizer } from '@angular/platform-browser';
+import { trailers } from './trailersapi';
 
 const helper = new JwtHelperService();
 
@@ -23,9 +25,15 @@ export class MoviePage implements OnInit {
   movie:any;
 
   currentRate = 0;
-  
 
-  constructor() { }
+  public eslaids = []
+  trailerVisible:Boolean = false;
+  enlace = "https://www.youtube.com/embed/4xOOr5dJPOc";
+  trailer;
+
+  constructor(public dom:DomSanitizer) { 
+    this.trailer=this.dom.bypassSecurityTrustResourceUrl(this.enlace)
+  }
   
   ngOnInit() {
 
@@ -39,15 +47,10 @@ export class MoviePage implements OnInit {
     this.getRatings()
 
 
-
-    
-    
-
-    
-
-    
-
-    
+    this.eslaids = [
+      {imagen: this.urll+this.movie.poster_path},
+      {imagen: this.urll+this.movie.backdrop_path},          
+    ]    
   }
 
 
@@ -381,7 +384,9 @@ changeNewVoteAverageIsOn(){
 
 
 
-
+verTrailer(){
+  this.trailerVisible=!this.trailerVisible
+}
 
 
 

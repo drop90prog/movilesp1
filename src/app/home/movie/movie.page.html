@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>movie</ion-title>
+    <ion-title (click)="verTrailer()">movie</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +9,40 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <img src="{{urll+movie.backdrop_path}}" alt="">  
+
+
+
+
+
+        <div style="width: 100%; height: 200px;">        
+          <ion-slides>
+            <ion-slide *ngFor="let es of eslaids" >
+              <ion-card >
+                <img *ngIf="!trailerVisible" style="max-height: 200px;" src="{{es.imagen}}" alt="">
+
+                <iframe  *ngIf="trailerVisible"
+                width="100%" 
+                height="200" 
+                [src]="trailer" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+              </ion-card>                   
+            </ion-slide>
+          </ion-slides>
+        </div>
+
+
+
+
+
+
+
+        
+
+        <!-- <img src="{{urll+movie.backdrop_path}}" alt="">   -->
       </ion-col>
     </ion-row>
     <ion-row>
