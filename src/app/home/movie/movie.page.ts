@@ -3,6 +3,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { DomSanitizer } from '@angular/platform-browser';
 import { trailers } from './trailersapi';
 
+
 const helper = new JwtHelperService();
 
 @Component({
@@ -28,11 +29,13 @@ export class MoviePage implements OnInit {
 
   public eslaids = []
   trailerVisible:Boolean = false;
-  enlace = "https://www.youtube.com/embed/4xOOr5dJPOc";
+  enlace: string;
   trailer;
 
+  
+
   constructor(public dom:DomSanitizer) { 
-    this.trailer=this.dom.bypassSecurityTrustResourceUrl(this.enlace)
+    
   }
   
   ngOnInit() {
@@ -50,7 +53,15 @@ export class MoviePage implements OnInit {
     this.eslaids = [
       {imagen: this.urll+this.movie.poster_path},
       {imagen: this.urll+this.movie.backdrop_path},          
-    ]    
+    ]
+
+    
+    for (let x in trailers){
+      if(trailers[x].id == this.movie.id)this.enlace=trailers[x].trailer
+    }
+    this.trailer=this.dom.bypassSecurityTrustResourceUrl(this.enlace)
+
+
   }
 
 
