@@ -32,6 +32,9 @@ export class MoviePage implements OnInit {
   enlace: string;
   trailer;
 
+
+  favorite: Boolean = false;
+
   
 
   constructor(public dom:DomSanitizer) { 
@@ -48,6 +51,8 @@ export class MoviePage implements OnInit {
     this.ideuser = iusername.sub
     this.getComments()
     this.getRatings()
+    this.findFavorite()
+    
 
 
     this.eslaids = [
@@ -399,11 +404,101 @@ verTrailer(){
   this.trailerVisible=!this.trailerVisible
 }
 
+saveFavorite(){
+
+    let info = {
+      iduser:this.ideuser,
+      username:this.username,
+      idmovie:this.movie.id,
+      moviename: this.movie.original_title,      
+    }
+
+    fetch('http://localhost:3000/savefavorite', {
+/*       fetch('https://movilesp1.herokuapp.com/savefavorite', { */
+      method: 'POST', 
+      body: JSON.stringify(info), 
+      headers:{
+          'Content-Type': 'application/json'
+      }
+      }).then(res =>{ 
+      
+        if(res.status==200) {
+          
+          res.json().then((data) => {           
+            this.favorite= !this.favorite 
+            alert(data.message)
+          })      
+        }
+      
+      }) 
+      .catch(error => console.error('Error:', error))
+
+  
+}
 
 
+
+
+findFavorite(){
+
+  let info = {
+    iduser:this.ideuser,
+    idmovie:this.movie.id,  
+  }
+
+  fetch('http://localhost:3000/findfavorites', {
+/*       fetch('https://movilesp1.herokuapp.com/findfavorites', { */
+    method: 'POST', 
+    body: JSON.stringify(info), 
+    headers:{
+        'Content-Type': 'application/json'
+    }
+    }).then(res =>{ 
+    
+      if(res.status==200) {    
+          this.favorite= !this.favorite         
+      }
+    
+    }) 
+    .catch(error => console.error('Error:', error))
 
 
 }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}//class

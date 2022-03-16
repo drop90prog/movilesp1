@@ -65,7 +65,12 @@ api.delete('/deleterating', ratingCtrl.deleteRating)
 api.post('/find5lastratings', ratingCtrl.find5LastRatings)
 
 
+//==========================================================FAVORITES
 
+const favoriteCtrl = require ('../controllers/favorites')
+
+api.post('/savefavorite', favoriteCtrl.saveFavorite)
+api.post('/findfavorites', favoriteCtrl.findFavorites)
 
 
 module.exports = api

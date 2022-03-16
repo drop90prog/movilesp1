@@ -1,7 +1,28 @@
-<ion-header>
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title (click)="verTrailer()">movie</ion-title>
+    <ion-title (click)="verTrailer()">movie</ion-title>   
   </ion-toolbar>
+
+  <ion-icon name="star-outline" size="large" style="float: right; margin-right: 15px;"></ion-icon>
+</ion-header> -->
+
+
+<ion-header [translucent]="true">
+  <ion-toolbar >
+    <ion-title (click)="verTrailer()">
+      Movie
+    </ion-title>     
+        <ion-icon *ngIf="!favorite" (click)="saveFavorite()"
+        name="star-outline" 
+        size="large" slot="secondary" 
+        style="margin-right: 15px;"></ion-icon>
+
+        <ion-icon *ngIf="favorite" (click)="saveFavorite()"
+        name="star" 
+        size="large" 
+        slot="secondary" 
+        style="margin-right: 15px;"></ion-icon>
+   </ion-toolbar>
 </ion-header>
 
 <ion-content>

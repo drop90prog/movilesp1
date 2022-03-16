@@ -45,7 +45,7 @@ function findRating(req, res){
             message:'errorrrrr'            
         })  
 
-        if(result){console.log(result)
+        if(result){
             return res.status(200).send({resultado:result})
         } 
         
@@ -70,7 +70,7 @@ function find5LastRatings(req, res){
 
 
 function deleteRating (req,res) {
-    console.log(req.body.id)   
+      
 
     Rating.findOneAndDelete({iduser: req.body.iduser, idmovie:req.body.idmovie} , (err, rating)=>{
         if(err)return res.status(500).send({message: err}) 
