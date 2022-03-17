@@ -107,40 +107,73 @@
     </ion-row>
   </ion-grid>
 
-  <ion-row (click)="cambiar()">
+  <!-- commentarios ----------------------------------------------->
+  <div *ngIf="comentariosVista">
+    <ion-row (click)="cambiar()">
+      <ion-col>
+        <p style="font-weight: bold">Comments</p> 
+      </ion-col>    
+    </ion-row>
+  
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item *ngFor="let com of comments">
+  
+            <div>
+              <div style="margin-top: 8px;">
+                <ion-text style="font-weight: bold" (click)="fetchUser(com.iduser, com.user)">@{{com.user}}</ion-text>
+                <ion-text style="margin-left: 10px;">{{com.comment}}</ion-text>
+              </div>
+            </div>         
+             
+          </ion-item>
+        </ion-list>      
+      </ion-col>    
+    </ion-row>
+    <ion-row>
+      <ion-item style="border-radius: 10px;">
+        
+        <ion-input  name="name" type="text" [(ngModel)]="komentario"></ion-input >      
+      </ion-item>
+      <ion-button (click)="saveComments()">comment</ion-button>
+    </ion-row>
+  </div>
 
-    <div>
-      
+    <!-- reviews ----------------------------------------------->
+    <div *ngIf="criticasVista">
+      <ion-row (click)="cambiar()">
+        <ion-col>
+          <p style="font-weight: bold">Reviews</p> 
+        </ion-col>    
+      </ion-row>
+    
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-item *ngFor="let rev of reviews">
+    
+              <div>
+                <div style="margin-top: 8px;">
+                  <ion-text style="font-weight: bold" (click)="fetchUser(com.iduser, com.user)">@{{rev.user}}</ion-text>
+                  <ion-text style="margin-left: 10px;">{{rev.review}}</ion-text>
+                </div>
+              </div>         
+               
+            </ion-item>
+          </ion-list>      
+        </ion-col>    
+      </ion-row>
+      <ion-row>
+        <ion-item style="border-radius: 10px;">
+          
+          <ion-input  name="name" type="text" [(ngModel)]="revComment"></ion-input >      
+        </ion-item>
+        <ion-button (click)="saveReview()">publish</ion-button>
+      </ion-row>
     </div>
 
-    <ion-col>
-      <p style="font-weight: bold">Comments</p> 
-    </ion-col>    
-  </ion-row>
 
-  <ion-row>
-    <ion-col>
-      <ion-list>
-        <ion-item *ngFor="let com of comments">
-
-          <div>
-            <div style="margin-top: 8px;">
-              <ion-text style="font-weight: bold" (click)="fetchUser(com.iduser, com.user)">@{{com.user}}</ion-text>
-              <ion-text style="margin-left: 10px;">{{com.comment}}</ion-text>
-            </div>
-          </div>         
-           
-        </ion-item>
-      </ion-list>      
-    </ion-col>    
-  </ion-row>
-  <ion-row>
-    <ion-item style="border-radius: 10px;">
-      
-      <ion-input  name="name" type="text" [(ngModel)]="komentario"></ion-input >      
-    </ion-item>
-    <ion-button (click)="saveComments()">comentar</ion-button>
-  </ion-row>
 
 
 

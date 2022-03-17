@@ -73,5 +73,24 @@ api.post('/savefavorite', favoriteCtrl.saveFavorite)
 api.post('/findfavorites', favoriteCtrl.findFavorites)
 
 
+//==========================================================REVIEWS
+
+const reviewsCtrl = require('../controllers/reviews')
+
+api.post('/savereview', reviewsCtrl.saveReview)
+api.post('/findreviews', reviewsCtrl.findReviews)
+
+
+//==========================================================RATINGREVIEWS
+
+const ratingReviews = require('../controllers/ratingreviews')
+
+api.post('/saveratingreview', ratingReviews.saveRatingReview)
+api.post('/findratingreview', ratingReviews.findRatingReview)
+api.post('/deleteratingreview', ratingReviews.deleteRatingReview)
+
+
+
+
 module.exports = api
 

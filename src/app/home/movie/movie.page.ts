@@ -53,6 +53,7 @@ export class MoviePage implements OnInit {
     this.getComments()
     this.getRatings()
     this.findFavoritePropio()
+    this.getReviews()
     
 
 
@@ -68,7 +69,7 @@ export class MoviePage implements OnInit {
     this.trailer=this.dom.bypassSecurityTrustResourceUrl(this.enlace)
 
 
-  }
+  }//ngOnInit
 
 
 
@@ -525,10 +526,93 @@ findFavoritePropio(){
 
 
 
-
+comentariosVista:Boolean = true;
+criticasVista:Boolean = false;
 cambiar(){
-  console.log("chamge")
+  this.comentariosVista = !this.comentariosVista
+  this.criticasVista = !this.criticasVista  
 }
+
+
+
+reviews=[]
+getReviews(){
+
+  let info = {idmovie:this.movie.id}
+
+  fetch('http://localhost:3000/findreviews', {
+/*       fetch('https://movilesp1.herokuapp.com/findreviews', { */
+    method: 'POST', 
+    body: JSON.stringify(info), 
+    headers:{            
+        'Content-Type': 'application/json'
+    }
+    }).then(res =>{ 
+    
+      if(res.status==200) {
+        
+        res.json().then((data) => {
+         
+          if(data.resultado.length>0){
+            //aqui agarramos username, critica e iduser de todos los que ublicaron criticas
+            for (let a in data.resultado){
+              this.reviews.push({
+                user: data.resultado[a].username,
+                review: data.resultado[a].review,
+                iduser: data.resultado[a].iduser
+              })               
+            }             
+          }
+        })
+        
+    
+      }
+    
+    }) 
+    .catch(error => console.error('Error:', error))
+
+}
+
+
+revComment:string
+saveReview(){
+
+  let info = {idmovie:this.movie.id, moviename:this.movie.original_title , iduser:this.ideuser, username:this.username, review:this.revComment};
+
+  fetch('http://localhost:3000/savereview', {
+/*     fetch('https://movilesp1.herokuapp.com/savereview', { */
+    method: 'POST', 
+    body: JSON.stringify(info), 
+    headers:{            
+        'Content-Type': 'application/json'
+    }
+    }).then(res =>{ 
+    
+      if(res.status==200) {   
+        
+        res.json().then((data) => {
+          this.reviews.push({user:this.username,review:this.revComment})
+          this.revComment=""
+          alert(data.message)
+        })     
+      }
+    
+    }) 
+    .catch(error => console.error('Error:', error))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
