@@ -50,7 +50,7 @@
                 <div>
                   <div>
                     <ion-checkbox [(ngModel)]="showLastFavorites"></ion-checkbox>
-                    <ion-label> Show last favorites</ion-label>
+                    <ion-label> Show top favorites</ion-label>
                   </div>
                   <div style="margin-top: 8px;">
                     <ion-checkbox [(ngModel)]="showLastComments"></ion-checkbox>
@@ -86,7 +86,7 @@
     <ion-row>
       <ion-col class="ion-text-center" style="font-size: large;">
         <ion-list>
-          <ion-text style="font-weight: bold">5 Last favorite movies</ion-text>
+          <ion-text style="font-weight: bold">Top favorite movies</ion-text>
           <ion-item *ngFor="let x of favorites">
 
             <div style="display: inline-block;">

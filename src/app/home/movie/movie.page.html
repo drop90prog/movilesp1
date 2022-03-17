@@ -58,11 +58,6 @@
 
 
 
-
-
-
-        
-
         <!-- <img src="{{urll+movie.backdrop_path}}" alt="">   -->
       </ion-col>
     </ion-row>
@@ -112,7 +107,12 @@
     </ion-row>
   </ion-grid>
 
-  <ion-row (click)="refresh()">
+  <ion-row (click)="cambiar()">
+
+    <div>
+      
+    </div>
+
     <ion-col>
       <p style="font-weight: bold">Comments</p> 
     </ion-col>    
@@ -122,8 +122,14 @@
     <ion-col>
       <ion-list>
         <ion-item *ngFor="let com of comments">
-          <ion-text style="font-weight: bold" (click)="fetchUser(com.iduser, com.user)">@{{com.user}}</ion-text>
-           <ion-text style="margin-left: 10px;">{{com.comment}}</ion-text>
+
+          <div>
+            <div style="margin-top: 8px;">
+              <ion-text style="font-weight: bold" (click)="fetchUser(com.iduser, com.user)">@{{com.user}}</ion-text>
+              <ion-text style="margin-left: 10px;">{{com.comment}}</ion-text>
+            </div>
+          </div>         
+           
         </ion-item>
       </ion-list>      
     </ion-col>    

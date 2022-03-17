@@ -55,6 +55,7 @@ export class HomePage implements OnInit{
 //====================================page1
   async usePage1(idgenre, genr) {
 
+    //para buscar todas las peliculas
     if(idgenre==null){ console.log("1")
       await this.fesh.getPage1()
       .subscribe(res => {
@@ -64,7 +65,7 @@ export class HomePage implements OnInit{
         console.log(err);
       });
     }
-
+    //para buscar por genero
     else{
     await this.fesh.getPage1()
       .subscribe(res => { 

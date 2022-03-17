@@ -34,6 +34,7 @@ export class MoviePage implements OnInit {
 
 
   favorite: Boolean = false;
+  
 
   
 
@@ -519,10 +520,15 @@ findFavoritePropio(){
     }) 
     .catch(error => console.error('Error:', error))
 
-
 }
 
 
+
+
+
+cambiar(){
+  console.log("chamge")
+}
 
 
 
