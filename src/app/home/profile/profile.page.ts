@@ -120,6 +120,7 @@ export class ProfilePage implements OnInit {
 
     signout(){
       localStorage.clear()
+      window.location.href = '/signin';
     }
 
 
