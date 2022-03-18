@@ -55,6 +55,16 @@ function find5LastComments(req, res){
 }
 
 
+function deleteComment (req,res) {
+      
+
+    Comment.findByIdAndDelete({_id: req.body.idcomment} , (err, result)=>{
+        if(err)return res.status(500).send({message: err}) 
+        if(result)res.status(200).send({message:'Successfully deleted'})
+    })    
+}
+
+
 
 
 
@@ -62,6 +72,7 @@ module.exports = {
     saveComment,
     findComments,
     find5LastComments,
+    deleteComment,
 }
 
 

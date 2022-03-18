@@ -55,6 +55,24 @@ function findRatingReview(req, res){
 
 
 
+function findRatingReviewPersonal(req, res){
+    RatingReview.find({idmovie: req.body.idmovie, iduser: req.body.iduser}, (err,result)=>{
+
+        if(err)return res.status(404).send({
+            message:err            
+        }) 
+        if(result.length>0){
+            return res.status(200).send({resultado:result})
+        } 
+        if(result.length==0){
+            return res.status(404).send({resultado:result})
+        } 
+        
+    })//Rating.find
+}
+
+
+
 
 
 function deleteRatingReview (req,res) {      
@@ -73,6 +91,7 @@ module.exports = {
     saveRatingReview,
     findRatingReview,
     deleteRatingReview,    
+    findRatingReviewPersonal,
 }
 
 

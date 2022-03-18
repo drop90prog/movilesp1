@@ -27,6 +27,7 @@ export class MoviePage implements OnInit {
 
   currentRate = 0;
 
+
   public eslaids = []
   trailerVisible:Boolean = false;
   enlace: string;
@@ -97,11 +98,19 @@ export class MoviePage implements OnInit {
             if(data.resultado.length>0){
               
               for (let a in data.resultado){
+                
                 this.comments.push({
                   user: data.resultado[a].username,
                   comment: data.resultado[a].comment,
-                  iduser: data.resultado[a].iduser
-                })               
+                  iduser: data.resultado[a].iduser,
+                  borrable: false,
+                  idcomment: data.resultado[a]._id,
+                  
+                })
+                //para activar el boton delete solo a los comentarios propios
+                if(data.resultado[a].iduser == this.ideuser) this.comments[a].borrable=true;
+
+
               }             
             }
 
@@ -113,6 +122,33 @@ export class MoviePage implements OnInit {
       }) 
       .catch(error => console.error('Error:', error))
 
+  }//getComments
+
+  deleteComment(arg){
+    let info = {idcomment:arg};
+
+    fetch('http://localhost:3000/deletecomment', {
+/*     fetch('https://movilesp1.herokuapp.com/deletecomment', { */
+      method: 'DELETE', 
+      body: JSON.stringify(info), 
+      headers:{            
+          'Content-Type': 'application/json'
+      }
+      }).then(res =>{ 
+      
+        if(res.status==200) {   
+          
+          res.json().then((data) => {
+            alert(data.message)
+            this.currentRate=0
+            location.reload()
+            
+          })     
+        }
+      
+      }) 
+      .catch(error => console.error('Error:', error))
+    
   }
 
 
@@ -134,7 +170,12 @@ export class MoviePage implements OnInit {
     
   }
 
+
+
   saveComments(){
+
+    if(this.komentario==null)alert("Invalid comment")
+    else{
 
     let info = {idmovie:this.movie.id, moviename:this.movie.original_title , iduser:this.ideuser, comment:this.komentario, username:this.username };
 
@@ -153,12 +194,17 @@ export class MoviePage implements OnInit {
             this.comments.push({user:this.username,comment:this.komentario})
             this.komentario=""
             alert(data.message)
+            location.reload()            
           })     
         }
       
       }) 
       .catch(error => console.error('Error:', error))
+
+    }
   }
+
+
 
 
 
@@ -525,7 +571,6 @@ findFavoritePropio(){
 
 
 
-
 comentariosVista:Boolean = true;
 criticasVista:Boolean = false;
 cambiar(){
@@ -561,9 +606,9 @@ getReviews(){
                 review: data.resultado[a].review,
                 iduser: data.resultado[a].iduser
               })               
-            }             
-          }
-        })
+            }//for             
+          }//if(data.resultado.length>0){
+        })//res.json().then((data) => {
         
     
       }
@@ -573,7 +618,7 @@ getReviews(){
 
 }
 
-
+rateReview = 0;
 revComment:string
 saveReview(){
 
@@ -603,16 +648,34 @@ saveReview(){
 
 
 
+saveRatingReview(){
+
+  let info = {idmovie:this.movie.id, moviename: this.movie.original_title, iduser:this.ideuser, username:this.username, rate:this.currentRate };
+
+  fetch('http://localhost:3000/saveratingreview', {
+/*     fetch('https://movilesp1.herokuapp.com/saveratingreview', { */
+    method: 'POST', 
+    body: JSON.stringify(info), 
+    headers:{            
+        'Content-Type': 'application/json'
+    }
+    }).then(res =>{ 
+    
+      if(res.status==200) {   
+        
+        res.json().then((data) => {
+          alert(data.message)
+          location.reload()
+          
+        })     
+      }
+    
+    }) 
+    .catch(error => console.error('Error:', error))
+}
 
 
-
-
-
-
-
-
-
-
+commentPropio:boolean = true;
 
 
 

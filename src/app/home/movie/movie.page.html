@@ -125,6 +125,10 @@
                 <ion-text style="font-weight: bold" (click)="fetchUser(com.iduser, com.user)">@{{com.user}}</ion-text>
                 <ion-text style="margin-left: 10px;">{{com.comment}}</ion-text>
               </div>
+
+              <div class="deleteComment" *ngIf="com.borrable" (click)="deleteComment(com.idcomment)">
+                <ion-text class="ion-text-center">delete</ion-text>
+              </div>
             </div>         
              
           </ion-item>
@@ -152,13 +156,57 @@
         <ion-col>
           <ion-list>
             <ion-item *ngFor="let rev of reviews">
-    
-              <div>
-                <div style="margin-top: 8px;">
-                  <ion-text style="font-weight: bold" (click)="fetchUser(com.iduser, com.user)">@{{rev.user}}</ion-text>
-                  <ion-text style="margin-left: 10px;">{{rev.review}}</ion-text>
+
+              <div class="plano">
+                <div class="plano-review">
+                  <div class="perfil">
+                    <div class="perfil-foto">
+  
+                    </div>
+                    <div class="perfil-username">
+                      <ion-text style="font-weight: bold" (click)="fetchUser(rev.iduser, rev.user)">@{{rev.user}}</ion-text>                  
+                    </div>
+  
+                  </div>
+                  
+                  
+                  <div class="contenido">
+                    <div class="review">
+                      <ion-text >{{rev.review}}</ion-text>
+                    </div>                  
+                  </div>
+                  
                 </div>
-              </div>         
+                
+                
+
+                <div class="plano-estrellas">
+                  <div>
+                    <div style="display: flex; flex-direction: column;">
+                      <div>
+                        <ngb-rating [max]="10" [(rate)]="rateReview" [readonly]="false" ></ngb-rating>
+                      </div>
+                      <div>
+                        <ion-text style="font-size: small;">votes: </ion-text>
+                        <ion-text style="font-size: small; margin-left: 15px;">voters: </ion-text>           
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <ion-text (click)="saveRatingReview()" *ngIf="rateReview==0" style="margin-left: 20px;">vote</ion-text>
+                    <ion-text (click)="deleteVoteReview()" *ngIf="rateReview!=0" style="margin-left: 20px;">remove vote</ion-text>
+                  </div>
+                </div>
+
+
+
+              </div>
+ 
+
+     
+    
+       
                
             </ion-item>
           </ion-list>      

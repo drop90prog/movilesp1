@@ -3,3 +3,62 @@
   width: 100%
 }
 
+
+.plano-review{
+ 
+  width:320px;
+  height: 100px;
+  
+  
+
+
+  background-color: lightgreen;
+  display: flex;
+
+  .perfil{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    height: 100px;
+    background-color: aquamarine;
+    align-items: center;
+
+
+    .perfil-foto{
+      width: 50px;
+      height: 50px;
+      background-color: red;
+
+
+    }//perfil-foto
+    .perfil-username{
+      
+
+    }
+  }//perfil
+  .contenido{
+    height: 100px;
+    width: 270px;
+    background-color: aqua;
+  }//contenido
+  
+  
+}//plano-review
+
+.plano-estrellas{
+  width:320px;
+  height: 30px;
+  background-color: bisque;
+  margin-bottom: 30px;
+  display: flex;
+}
+
+
+.deleteComment{
+  margin-top: 3px;
+  margin-bottom: 20px;
+  height: 17px;
+  width: 45px;
+  background-color: lightgrey;
+}
+

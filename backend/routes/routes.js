@@ -51,6 +51,7 @@ const commentCtrl = require ('../controllers/comments')
 api.post('/savecomment', commentCtrl.saveComment)
 api.post('/findcomments', commentCtrl.findComments)
 api.post('/find5lastcomments', commentCtrl.find5LastComments)
+api.delete('/deletecomment', commentCtrl.deleteComment)
 
 
 
@@ -87,6 +88,7 @@ const ratingReviews = require('../controllers/ratingreviews')
 
 api.post('/saveratingreview', ratingReviews.saveRatingReview)
 api.post('/findratingreview', ratingReviews.findRatingReview)
+api.post('/findratingreviewpersonal', ratingReviews.findRatingReviewPersonal)
 api.post('/deleteratingreview', ratingReviews.deleteRatingReview)
 
 
