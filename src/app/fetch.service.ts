@@ -7,6 +7,11 @@ import { catchError, tap, map } from 'rxjs/operators';
 
 const api_url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=2120307b21e02afa98bde189c351c683';
 
+const tomcruise = 'https://api.themoviedb.org/3/discover/movie?with_genres=878&with_cast=500&sort_by=vote_average.desc&api_key=2120307b21e02afa98bde189c351c683';
+const kids = 'https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=2120307b21e02afa98bde189c351c683';
+
+
+
 const api_movies_pag1 = "https://api.themoviedb.org/3/movie/popular?api_key=388e20400ba649646de0197f785eb437&language=en-US&page=1"
 const api_movies_pag2 = "https://api.themoviedb.org/3/movie/popular?api_key=388e20400ba649646de0197f785eb437&language=en-US&page=2"
 const api_movies_pag3 = "https://api.themoviedb.org/3/movie/popular?api_key=388e20400ba649646de0197f785eb437&language=en-US&page=3"
@@ -23,7 +28,7 @@ export class FetchService {
 
   constructor(private http: HttpClient) { }
 
-
+//highest ranked movies
    movieData(res) {
     return res ;
   }
@@ -31,6 +36,24 @@ export class FetchService {
     return this.http.get(api_url).pipe(
       map(this.movieData));
   }
+
+  //highest ranked movies from tom cruise
+  tomcruise(res) {
+    return res ;
+  }
+  getTomcruise(): Observable<any> {
+    return this.http.get(tomcruise).pipe(
+      map(this.tomcruise));
+  }
+
+    //highest ranked movies for kids
+    kids(res) {
+      return res ;
+    }
+    getKids(): Observable<any> {
+      return this.http.get(kids).pipe(
+        map(this.kids));
+    }
 
 //===============================page1
   page1(res) {

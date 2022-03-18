@@ -20,15 +20,21 @@ export class HomePage implements OnInit{
   page3: any;
   page4: any;
   page5: any;
+  pagetomcruise: any;
+  pagekids: any;
   movieGenre = []
 
   ideuser
+
+  tomcrus;
+  kidsmovies;
   
   constructor(private fesh: FetchService) {   }
 
   ngOnInit(){
     this.useMovieData();
-
+    this.tomcruise()
+    this.kids()
 
     let ls=localStorage.getItem('token')
     let iusername = helper.decodeToken(ls);
@@ -41,11 +47,34 @@ export class HomePage implements OnInit{
 
   }//end of ngOnInit
 
-
+//highest ranked........................
   async useMovieData() {
     await this.fesh.getMovieData()
       .subscribe(res => {
         this.movie = res.results;
+/*         localStorage.setItem('movie',JSON.stringify(this.movie)) */
+      }, err => {
+        console.log(err);
+      });
+  }
+
+ 
+  //highest ranked tom cruise movies........................
+  async tomcruise() {
+    await this.fesh.getTomcruise()
+      .subscribe(res => {
+        this.tomcrus = res.results;
+/*         localStorage.setItem('movie',JSON.stringify(this.movie)) */
+      }, err => {
+        console.log(err);
+      });
+  }
+
+//highest ranked for kids........................
+  async kids() {
+    await this.fesh.getKids()
+      .subscribe(res => {
+        this.kidsmovies = res.results;
 /*         localStorage.setItem('movie',JSON.stringify(this.movie)) */
       }, err => {
         console.log(err);
@@ -223,17 +252,40 @@ export class HomePage implements OnInit{
       }
     }
 
+    //====================================tomcruise
+    async tomcruiseall() {      
+        await this.fesh.getTomcruise()
+        .subscribe(res => {
+          this.allmovies.push(res.results)
+          localStorage.setItem('allmovies',JSON.stringify(this.allmovies))
+        }, err => {
+          console.log(err);
+        });      
+    }
+
+        //====================================kids
+        async kidsall() {      
+          await this.fesh.getKids()
+          .subscribe(res => {
+            this.allmovies.push(res.results)
+            localStorage.setItem('allmovies',JSON.stringify(this.allmovies))
+          }, err => {
+            console.log(err);
+          });      
+      }
+
 
     
 
     search(){
-
       
         this.usePage1(null, null)
         this.usePage2(null, null)
         this.usePage3(null, null)
         this.usePage4(null, null)
         this.usePage5(null, null)
+        this.tomcruiseall()
+        this.kidsall()
         window.location.href = "/home/search"
         
   
@@ -393,6 +445,44 @@ export class HomePage implements OnInit{
             .subscribe(res => {
               this.page5 = res.results;
               for (let x in this.page5){
+                let ocarina = res.results[x].genre_ids
+                  for (let y in ocarina){
+                    if(ocarina[y]==genero) this.movieGenre.push(res.results[x])
+                  }
+              }
+      
+              //esto es para buscar por genero
+              localStorage.setItem('muvi',JSON.stringify(this.movieGenre))
+              localStorage.setItem('muvigen',id)
+            }, err => {
+              console.log(err);
+            });
+
+            //====================================tomcruise
+
+            await this.fesh.getTomcruise()
+            .subscribe(res => {
+              this.pagetomcruise = res.results;
+              for (let x in this.pagetomcruise){
+                let ocarina = res.results[x].genre_ids
+                  for (let y in ocarina){
+                    if(ocarina[y]==genero) this.movieGenre.push(res.results[x])
+                  }
+              }
+      
+              //esto es para buscar por genero
+              localStorage.setItem('muvi',JSON.stringify(this.movieGenre))
+              localStorage.setItem('muvigen',id)
+            }, err => {
+              console.log(err);
+            });
+
+//====================================kids
+
+            await this.fesh.getKids()
+            .subscribe(res => {
+              this.pagekids = res.results;
+              for (let x in this.pagekids){
                 let ocarina = res.results[x].genre_ids
                   for (let y in ocarina){
                     if(ocarina[y]==genero) this.movieGenre.push(res.results[x])
