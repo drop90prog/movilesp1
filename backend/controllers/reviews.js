@@ -40,12 +40,22 @@ function findReviews(req, res){
 
 
 
+function deleteReview (req,res) {
+      
+
+    Review.findByIdAndDelete({_id: req.body.idreview} , (err, result)=>{
+        if(err)return res.status(500).send({message: err}) 
+        if(result)res.status(200).send({message:'Successfully deleted'})
+    })    
+}
+
 
 
 
 module.exports = {
     saveReview,
     findReviews,
+    deleteReview
 }
 
 

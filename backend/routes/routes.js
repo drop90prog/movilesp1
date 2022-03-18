@@ -80,6 +80,8 @@ const reviewsCtrl = require('../controllers/reviews')
 
 api.post('/savereview', reviewsCtrl.saveReview)
 api.post('/findreviews', reviewsCtrl.findReviews)
+api.delete('/deletereview', reviewsCtrl.deleteReview)
+
 
 
 //==========================================================RATINGREVIEWS

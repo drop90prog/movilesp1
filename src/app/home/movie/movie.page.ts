@@ -608,8 +608,11 @@ getReviews(){
                 user: data.resultado[a].username,
                 review: data.resultado[a].review,
                 iduser: data.resultado[a].iduser,
-                rate: 0 //0 porque no he votado por ellos, pero pronto abajito esto cambiara
-              })               
+                rate: 0, //0 porque no he votado por ellos, pero pronto abajito esto cambiara
+                borrable: false,
+                idreview: data.resultado[a]._id
+              })
+              if(data.resultado[a].iduser == this.ideuser) this.reviews[a].borrable=true;
             }//for             
           }//if(data.resultado.length>0){
         })//res.json().then((data) => {
@@ -768,8 +771,34 @@ deleteVoteReview(arg){
     }) 
     .catch(error => console.error('Error:', error))
     
-  
+}
 
+
+deleteReview(arg){
+  let info = {idreview:arg};
+
+  fetch('http://localhost:3000/deletereview', {
+/*     fetch('https://movilesp1.herokuapp.com/deletereview', { */
+    method: 'DELETE', 
+    body: JSON.stringify(info), 
+    headers:{            
+        'Content-Type': 'application/json'
+    }
+    }).then(res =>{ 
+    
+      if(res.status==200) {   
+        
+        res.json().then((data) => {
+          alert(data.message)
+          this.currentRate=0
+          location.reload()
+          
+        })     
+      }
+    
+    }) 
+    .catch(error => console.error('Error:', error))
+  
 }
 
 
