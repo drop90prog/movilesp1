@@ -17,6 +17,7 @@ export class ProfilePage implements OnInit {
    }
 
    username: string
+   emaill: string
 
    favorites;
    lastcomments;
@@ -28,7 +29,7 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     let fd=localStorage.getItem('token')
     let iusername = helper.decodeToken(fd);
-    if(!localStorage.getItem('perfilde'))this.username =iusername.name
+    if(!localStorage.getItem('perfilde')){this.username =iusername.name; this.emaill=iusername.email}
     else {this.username = localStorage.getItem('perfilde'); this.editIsPrivate=true}
 
     this.favorites = JSON.parse(localStorage.getItem('favorites'))
@@ -90,14 +91,19 @@ export class ProfilePage implements OnInit {
       }
       }).then(res =>{ 
         this.loadingController.dismiss()
-        if(res.status==200) {   
+        if(res.status==200) {
           
           res.json().then((data) => {
             localStorage.clear()
             localStorage.setItem('token',data.token)
             let fdd=localStorage.getItem('token')
             let iusernamee = helper.decodeToken(fdd);
-            this.username =iusernamee.name   
+            this.username =iusernamee.name 
+            this.emaill =iusernamee.email
+
+            this.name = ""
+            this.email = ""
+            this. password = ""
                     
           })
           
