@@ -1,22 +1,28 @@
 
 
   <ion-card-content>
+    
 
-<!--     <img src="../../assets/img/tomate.png" style="margin-left: 100px;"> -->
+ 
     <div class="campos">
-      <ion-item style="border-radius: 10px;">            
-        <ion-label position="stacked">Correo</ion-label>
-        <ion-input [(ngModel)]="email" type="email"></ion-input>
-      </ion-item>
-      <ion-item style="margin-top: 10px; border-radius: 10px;">
-        <ion-label position="stacked">Contraseña</ion-label>
-        <ion-input [(ngModel)]="password" type="password"></ion-input>
-      </ion-item>
-      <ion-button color="light" (click)="sendFetchInicio()">Iniciar Sesión</ion-button>
-      <!-- <ion-button color="danger" ><a routerLink="/home" style="color: white;">Iniciar Sesión</a></ion-button> -->
+      <div>
+        <img src="../../assets/img/tomate.png" style="margin-left: 50px; margin-bottom: 10px;">
+      
+        <ion-item style="border-radius: 10px;">            
+          <ion-label position="stacked">Email:</ion-label>
+          <ion-input [(ngModel)]="email" type="email"></ion-input>
+        </ion-item>
+        <ion-item style="margin-top: 10px; border-radius: 10px;">
+          <ion-label position="stacked">Password:</ion-label>
+          <ion-input [(ngModel)]="password" type="password"></ion-input>
+        </ion-item>
+        <ion-button color="light" (click)="sendFetchInicio()">Sign in</ion-button>
+        <!-- <ion-button color="danger" ><a routerLink="/home" style="color: white;">Iniciar Sesión</a></ion-button> -->
+        <ion-card-subtitle class="ion-text-center">¿Don't have an account? Sign up  <a (click)="goSignUp()">here</a></ion-card-subtitle>
+      </div>
     </div>   
     
-    <ion-card-subtitle>¿No tienes cuenta? Regístrate <a (click)="goSignUp()">aquí</a></ion-card-subtitle>
+    
     
   </ion-card-content>
 

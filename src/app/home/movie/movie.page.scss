@@ -7,27 +7,27 @@
 .plano-review{
  
   width:320px;
-  height: 100px;
+  height: auto;
   
   
 
 
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
   display: flex;
 
   .perfil{
     display: flex;
     flex-direction: column;
     width: 100px;
-    height: 100px;
-    background-color: aquamarine;
+    height: auto;
+    /* background-color: aquamarine; */
     align-items: center;
 
 
     .perfil-foto{
       width: 50px;
       height: 50px;
-      background-color: red;
+      
 
 
     }//perfil-foto
@@ -37,9 +37,9 @@
     }
   }//perfil
   .contenido{
-    height: 100px;
+    height: auto;
     width: 270px;
-    background-color: aqua;
+    /* background-color: aqua; */
   }//contenido
   
   
@@ -47,8 +47,9 @@
 
 .plano-estrellas{
   width:320px;
-  height: 30px;
-  background-color: bisque;
+  height: 25px;
+  /* background-color: bisque; */
+  background-color: lightgrey;
   margin-bottom: 30px;
   display: flex;
 }

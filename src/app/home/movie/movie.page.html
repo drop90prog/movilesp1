@@ -63,16 +63,22 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <h3 class="ion-text-center">
+        <h2 class="ion-text-center">
           {{movie.original_title}}
-        </h3>
+        </h2>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <p>
-          {{movie.overview}}
-        </p>
+      <ion-col class="ion-text-center">
+        <ion-title>Overview:</ion-title>
+        <p>{{movie.overview}}</p>
+
+
+        <ion-title>Language:</ion-title>
+        <p>{{movie.original_language}}</p>
+
+        <ion-title>Release date:</ion-title>
+        <p>{{movie.release_date}}</p>
       </ion-col>
     </ion-row>
     <ion-row >
@@ -165,7 +171,7 @@
                 <div class="plano-review">
                   <div class="perfil">
                     <div class="perfil-foto">
-  
+                      <ion-img src="../../../assets/img/perfil.png"></ion-img>
                     </div>
                     <div class="perfil-username">
                       <ion-text style="font-weight: bold" (click)="fetchUser(rev.iduser, rev.user)">@{{rev.user}}</ion-text>                  
@@ -194,10 +200,10 @@
                       <div>
                         <ngb-rating [max]="10" [(rate)]="rev.rate" [readonly]="true" ></ngb-rating>
                       </div>
-                      <div>
+<!--                       <div>
                         <ion-text style="font-size: small;">votes: </ion-text>
                         <ion-text style="font-size: small; margin-left: 15px;">voters: </ion-text>           
-                      </div>
+                      </div> -->
                     </div>
                   </div>
 

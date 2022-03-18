@@ -5,7 +5,7 @@
     <div class="contenido">
 
       <div class="title">
-        <ion-label>FORMULARIO DE REGISTRO</ion-label>
+        <ion-label>REGISTER FORM</ion-label>
       </div>
       
  
@@ -15,20 +15,20 @@
         
 
           <ion-item style="border-radius: 10px;">
-            <ion-label position="floating">Usuario: </ion-label>
+            <ion-label position="floating">Username: </ion-label>
             <ion-input  name="name" type="text" required [(ngModel)]="name"></ion-input >
           </ion-item>
           
           <ion-item style="margin-top: 10px; border-radius: 10px;">
-            <ion-label position="floating">Correo: </ion-label>
+            <ion-label position="floating">Email: </ion-label>
             <ion-input name="email" type="email" required [(ngModel)]="email"></ion-input>
           </ion-item>          
           <ion-item style="margin-top: 10px; border-radius: 10px;">
-            <ion-label position="floating">Contraseña: </ion-label>
+            <ion-label position="floating">Password: </ion-label>
             <ion-input name="password" type="password" required [(ngModel)]="password"></ion-input>
           </ion-item>
           <ion-item style="margin-top: 10px; border-radius: 10px;">
-            <ion-label position="floating">Repetir contraseña: </ion-label>
+            <ion-label position="floating">Repeat Password: </ion-label>
             <ion-input name="confirmar" type="password" required [(ngModel)]="confirmar"></ion-input>
           </ion-item>
         
@@ -39,7 +39,7 @@
   
       <ion-button color="light" (click)="sendFetchRegistro()" >Registrarse</ion-button>
    
-      <ion-card-subtitle>¿Ya tienes cuenta? Accede desde <a (click)="goSignIn()">aquí</a></ion-card-subtitle>
+      <ion-card-subtitle>¿Have an account already? Sign in <a (click)="goSignIn()">here</a></ion-card-subtitle>
     </div>
     
     

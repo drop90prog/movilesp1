@@ -1,9 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar style="--background: gray">
     <ion-title style="--color: white">
-      Perfil de usuario
-    </ion-title>
-      
+      User Profile
+    </ion-title>      
    </ion-toolbar>
 </ion-header>
 
@@ -13,32 +12,32 @@
       <div class="foto">        
         <ion-img src="../../../assets/img/perfil.png"></ion-img>           
       </div>
-      <div class="nombre">
+      <div class="ion-text-center" style="margin-top: 40px;">
         <ion-label style="font-size: large;">{{username}}</ion-label>
       </div>
     </div>
 
-  <ion-card>    
+  <ion-card style="margin-top: 40px;">    
     <div class="dos" *ngIf="!editIsPrivate">
       <div class="editar-perfil"> 
         <ion-icon style="padding: 12px;" size="large" name="pencil-outline"></ion-icon>       
         <ion-text color="black">
-          <h4 >Editar perfil</h4>
+          <h4 >Edit Profile</h4>
         </ion-text>
         <ion-icon style="padding: 12px;" size="large" name="pencil-outline"></ion-icon>
       </div>
 
       <div class="form"> 
         <ion-item >
-          <ion-label>Usuario: </ion-label>
+          <ion-label>Username: </ion-label>
           <ion-input [(ngModel)]="name" type="name"></ion-input>
         </ion-item>    
         <ion-item >
-          <ion-label>Correo: </ion-label>
+          <ion-label>Email: </ion-label>
           <ion-input [(ngModel)]="email" type="email"></ion-input>
         </ion-item>       
         <ion-item >
-          <ion-label>Contraseña: </ion-label>
+          <ion-label>Password: </ion-label>
           <ion-input [(ngModel)]="password" type="password" ></ion-input>
         </ion-item> 
         
@@ -67,14 +66,7 @@
           </ion-grid>
         </div>
 
-
-
-
-
-
-
-
-          <ion-button (click)="guardarCambios()" color="light">Guardar cambios</ion-button>         
+          <ion-button (click)="guardarCambios()" color="light">Save Changes</ion-button>         
       </div>
     </div>
   </ion-card>

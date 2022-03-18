@@ -571,8 +571,8 @@ findFavoritePropio(){
 
 
 
-comentariosVista:Boolean = false;
-criticasVista:Boolean = true;
+comentariosVista:Boolean = true;
+criticasVista:Boolean = false;
 cambiar(){
   this.comentariosVista = !this.comentariosVista
   this.criticasVista = !this.criticasVista  

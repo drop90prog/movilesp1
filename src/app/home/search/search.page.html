@@ -1,7 +1,9 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>search</ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true">
+  <ion-toolbar style="--background: gray">
+    <ion-title style="--color: white">
+      Search Movie
+    </ion-title>      
+   </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -9,7 +11,7 @@
   <div class="search">
     <div class="search-bar" >     
       <ion-searchbar
-        placeholder="bushcaaa"
+        placeholder="find"
         [(ngModel)]="sorch"
         showCancelButton="focus"
         animated
