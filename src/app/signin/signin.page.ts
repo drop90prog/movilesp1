@@ -47,15 +47,20 @@ export class SigninPage implements OnInit {
       }
       }).then(res =>{ 
         this.loadingController.dismiss()
-        if(res.status==200) {
-          
+        if(res.status==200) {          
           res.json().then((data) => {
             localStorage.setItem('token',data.token)
           })    
           
           window.location.href = '/home';
          
+        }else{
+          res.json().then((data) => {
+            alert(data.message)
+          })   
         }
+
+        
       
       }) 
       .catch(error => console.error('Error:', error))

@@ -50,6 +50,10 @@ export class SignupPage implements OnInit {
             alert(data.message)
           })
           
+        }else {
+          res.json().then((data) => {
+            alert(data.message)
+          })
         }
 
       }) 
