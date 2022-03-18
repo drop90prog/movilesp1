@@ -571,8 +571,8 @@ findFavoritePropio(){
 
 
 
-comentariosVista:Boolean = true;
-criticasVista:Boolean = false;
+comentariosVista:Boolean = false;
+criticasVista:Boolean = true;
 cambiar(){
   this.comentariosVista = !this.comentariosVista
   this.criticasVista = !this.criticasVista  
@@ -581,12 +581,15 @@ cambiar(){
 
 
 reviews=[]
+ratereview:number=0;
 getReviews(){
 
-  let info = {idmovie:this.movie.id}
+  const getreviewsyratings = async()=>{
 
-  fetch('http://localhost:3000/findreviews', {
-/*       fetch('https://movilesp1.herokuapp.com/findreviews', { */
+    let info = {idmovie:this.movie.id}
+
+  await fetch('http://localhost:3000/findreviews', {
+/*      await fetch('https://movilesp1.herokuapp.com/findreviews', { */
     method: 'POST', 
     body: JSON.stringify(info), 
     headers:{            
@@ -604,7 +607,8 @@ getReviews(){
               this.reviews.push({
                 user: data.resultado[a].username,
                 review: data.resultado[a].review,
-                iduser: data.resultado[a].iduser
+                iduser: data.resultado[a].iduser,
+                rate: 0 //0 porque no he votado por ellos, pero pronto abajito esto cambiara
               })               
             }//for             
           }//if(data.resultado.length>0){
@@ -615,12 +619,65 @@ getReviews(){
     
     }) 
     .catch(error => console.error('Error:', error))
+//============================================================
 
-}
+let infos = {idmovie:this.movie.id, iduser:this.ideuser}
+
+  await fetch('http://localhost:3000/findratingreviewpersonal', {
+/*      await fetch('https://movilesp1.herokuapp.com/findratingreviewpersonal', { */
+    method: 'POST', 
+    body: JSON.stringify(infos), 
+    headers:{            
+        'Content-Type': 'application/json'
+    }
+    }).then(res =>{ 
+    
+      if(res.status==200) {
+        
+        res.json().then((data) => {
+         
+          if(data.resultado.length>0){
+            //aqui agarramos username, critica e iduser de todos los que ublicaron criticas
+            for (let a in data.resultado){
+              for(let b in this.reviews){
+                if(data.resultado[a].iduserreviewer == this.reviews[b].iduser)
+                this.reviews[b].rate=data.resultado[a].rate
+              }
+
+
+              
+             
+            }//for             
+          }//if(data.resultado.length>0){
+        })//res.json().then((data) => {
+        
+    
+      }
+    
+    }) 
+    .catch(error => console.error('Error:', error))
+
+
+
+
+
+
+
+
+  }//getreviewsyratings
+
+  getreviewsyratings()
+
+  
+
+}//getReviews
 
 rateReview = 0;
 revComment:string
 saveReview(){
+
+  if(this.revComment==null)alert("Invalid review")
+  else{
 
   let info = {idmovie:this.movie.id, moviename:this.movie.original_title , iduser:this.ideuser, username:this.username, review:this.revComment};
 
@@ -644,13 +701,21 @@ saveReview(){
     
     }) 
     .catch(error => console.error('Error:', error))
+
+  }
 }
 
+ratemovietoo:boolean=false;
 
+saveRatingReview(iduserreviewerr){
 
-saveRatingReview(){
-
-  let info = {idmovie:this.movie.id, moviename: this.movie.original_title, iduser:this.ideuser, username:this.username, rate:this.currentRate };
+  let info = {
+    idmovie:this.movie.id, 
+    moviename: this.movie.original_title, 
+    iduser:this.ideuser, 
+    username:this.username, 
+    rate:this.ratereview, 
+    iduserreviewer: iduserreviewerr };
 
   fetch('http://localhost:3000/saveratingreview', {
 /*     fetch('https://movilesp1.herokuapp.com/saveratingreview', { */
@@ -665,6 +730,7 @@ saveRatingReview(){
         
         res.json().then((data) => {
           alert(data.message)
+          this.ratemovietoo=true
           location.reload()
           
         })     
@@ -673,6 +739,59 @@ saveRatingReview(){
     }) 
     .catch(error => console.error('Error:', error))
 }
+
+
+deleteVoteReview(arg){
+
+ console.log(arg)
+  let info = {iduser:this.ideuser, idmovie:this.movie.id , iduserreviewer:arg};
+
+  fetch('http://localhost:3000/deleteratingreview', {
+/*     fetch('https://movilesp1.herokuapp.com/deleteratingreview', { */
+    method: 'DELETE', 
+    body: JSON.stringify(info), 
+    headers:{            
+        'Content-Type': 'application/json'
+    }
+    }).then(res =>{ 
+    
+      if(res.status==200) {   
+        
+        res.json().then((data) => {
+          alert(data.message)
+          this.currentRate=0
+          location.reload()
+          
+        })     
+      }
+    
+    }) 
+    .catch(error => console.error('Error:', error))
+    
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 commentPropio:boolean = true;

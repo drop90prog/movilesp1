@@ -11,7 +11,6 @@ function saveReview(req, res){
         iduser: req.body.iduser,
         username: req.body.username,
         review: req.body.review,
-        rate: 0
     })        
     critica.save((err)=>{
         if(err)return res.status(500).send({message:`Error ${err}`})

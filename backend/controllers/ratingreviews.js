@@ -6,10 +6,10 @@ const RatingReview = require('../models/ratingReviews')
 function saveRatingReview(req, res){
 
 
-    RatingReview.findOne({idmovie: req.body.idmovie, iduser: req.body.iduser}, (err,result)=>{
+    RatingReview.findOne({idmovie: req.body.idmovie, iduser: req.body.iduser, iduserreviewer: req.body.iduserreviewer}, (err,result)=>{
 
  
-        if(result){            
+        if(result){         console.log(result)   
             return res.status(200).send({message:"Only 1 vote allowed"})
         }
 
@@ -17,8 +17,9 @@ function saveRatingReview(req, res){
             const ratingrev = new RatingReview({        
                 idmovie: req.body.idmovie,
                 moviename: req.body.moviename,
-                iduser: req.body.iduser,
+                iduser: req.body.iduser,//mi id(el que vota al review del reviewer)
                 username: req.body.username,
+                iduserreviewer: req.body.iduserreviewer,//id del critico, a quien yo le vote
                 rate: req.body.rate,
             })        
             ratingrev.save((err)=>{
@@ -75,9 +76,12 @@ function findRatingReviewPersonal(req, res){
 
 
 
-function deleteRatingReview (req,res) {      
+function deleteRatingReview (req,res) {   
+    console.log(req.body.iduser)   
+    console.log(req.body.idmovie)
+    console.log(req.body.iduserreviewer)
 
-    RatingReview.findOneAndDelete({iduser: req.body.iduser, idmovie:req.body.idmovie} , (err, rating)=>{
+    RatingReview.findOneAndDelete({iduser: req.body.iduser, idmovie:req.body.idmovie, iduserreviewer: req.body.iduserreviewer} , (err, rating)=>{
         if(err)return res.status(500).send({message: err}) 
         if(rating)res.status(200).send({message:'Successfully deleted'})
         if(!rating)res.status(200).send({message:'no rated by current user apparently'})

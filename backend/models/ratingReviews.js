@@ -8,6 +8,7 @@ const UserSchema = new Schema({
     moviename: String,
     iduser: String,
     username: String,
+    iduserreviewer: String,    
     rate: Number,
 })
 

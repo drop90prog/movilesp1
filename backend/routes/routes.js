@@ -89,7 +89,7 @@ const ratingReviews = require('../controllers/ratingreviews')
 api.post('/saveratingreview', ratingReviews.saveRatingReview)
 api.post('/findratingreview', ratingReviews.findRatingReview)
 api.post('/findratingreviewpersonal', ratingReviews.findRatingReviewPersonal)
-api.post('/deleteratingreview', ratingReviews.deleteRatingReview)
+api.delete('/deleteratingreview', ratingReviews.deleteRatingReview)
 
 
 

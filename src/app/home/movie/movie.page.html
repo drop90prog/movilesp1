@@ -149,9 +149,13 @@
       <ion-row (click)="cambiar()">
         <ion-col>
           <p style="font-weight: bold">Reviews</p> 
-        </ion-col>    
+        </ion-col>            
       </ion-row>
-    
+      <div style="display: flex; justify-content: center;">
+        <ngb-rating [max]="10" [(rate)]="ratereview" [readonly]="false" ></ngb-rating>
+        <p style="margin-left: 7px;">{{ratereview}}</p>
+      </div>
+
       <ion-row>
         <ion-col>
           <ion-list>
@@ -179,12 +183,12 @@
                 </div>
                 
                 
-
+                
                 <div class="plano-estrellas">
                   <div>
                     <div style="display: flex; flex-direction: column;">
                       <div>
-                        <ngb-rating [max]="10" [(rate)]="rateReview" [readonly]="false" ></ngb-rating>
+                        <ngb-rating [max]="10" [(rate)]="rev.rate" [readonly]="true" ></ngb-rating>
                       </div>
                       <div>
                         <ion-text style="font-size: small;">votes: </ion-text>
@@ -194,8 +198,8 @@
                   </div>
 
                   <div>
-                    <ion-text (click)="saveRatingReview()" *ngIf="rateReview==0" style="margin-left: 20px;">vote</ion-text>
-                    <ion-text (click)="deleteVoteReview()" *ngIf="rateReview!=0" style="margin-left: 20px;">remove vote</ion-text>
+                    <ion-text (click)="saveRatingReview(rev.iduser)" *ngIf="rev.rate==0" style="margin-left: 20px;">vote</ion-text>                    
+                    <ion-text (click)="deleteVoteReview(rev.iduser)" *ngIf="rev.rate!=0" style="margin-left: 20px;">remove vote</ion-text>
                   </div>
                 </div>
 

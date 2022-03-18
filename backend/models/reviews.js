@@ -9,7 +9,6 @@ const UserSchema = new Schema({
     iduser: String,
     username: String,
     review: String,
-    rate: Number, 
 
 })
 
