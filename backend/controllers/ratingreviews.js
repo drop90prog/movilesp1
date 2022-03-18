@@ -77,9 +77,7 @@ function findRatingReviewPersonal(req, res){
 
 
 function deleteRatingReview (req,res) {   
-    console.log(req.body.iduser)   
-    console.log(req.body.idmovie)
-    console.log(req.body.iduserreviewer)
+
 
     RatingReview.findOneAndDelete({iduser: req.body.iduser, idmovie:req.body.idmovie, iduserreviewer: req.body.iduserreviewer} , (err, rating)=>{
         if(err)return res.status(500).send({message: err}) 

@@ -693,10 +693,16 @@ saveReview(){
     }
     }).then(res =>{ 
     
-      if(res.status==200) {   
-        
+      if(res.status==200) {        
         res.json().then((data) => {
           this.reviews.push({user:this.username,review:this.revComment})
+          this.revComment=""
+          alert(data.message)
+          location.reload()
+        })     
+      }
+      if(res.status==404) {        
+        res.json().then((data) => {
           this.revComment=""
           alert(data.message)
         })     

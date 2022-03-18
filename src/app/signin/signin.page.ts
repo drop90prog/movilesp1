@@ -26,7 +26,15 @@ export class SigninPage implements OnInit {
   email:string; password:string;
 
   sendFetchInicio(){ 
-    this.presentLoading()
+
+    const ay = async()=>{
+      await this.presentLoading()
+    
+    
+
+    
+
+   
     let account = { email:this.email, password:this.password};
     
     console.log(account)
@@ -39,22 +47,20 @@ export class SigninPage implements OnInit {
       }
       }).then(res =>{ 
         this.loadingController.dismiss()
-        if(res.status==200) {   
+        if(res.status==200) {
           
           res.json().then((data) => {
             localStorage.setItem('token',data.token)
-            
-            
-
-
-          })
+          })    
           
           window.location.href = '/home';
+         
         }
       
       }) 
       .catch(error => console.error('Error:', error))
-      .then(response => console.log(response));
+      }//ay
+      ay()
     }
 
 goSignUp(){
