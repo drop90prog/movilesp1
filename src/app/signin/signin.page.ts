@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-signin',
@@ -7,16 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SigninPage implements OnInit {
 
-  constructor() { }
+  constructor(public loadingController: LoadingController) { }
 
   ngOnInit() {
   }
 
 
 
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Authenticating...',      
+    });
+    await loading.present();
+  }
+
+
   email:string; password:string;
 
   sendFetchInicio(){ 
+    this.presentLoading()
     let account = { email:this.email, password:this.password};
     
     console.log(account)
@@ -28,11 +38,13 @@ export class SigninPage implements OnInit {
           'Content-Type': 'application/json'
       }
       }).then(res =>{ 
-      
+        this.loadingController.dismiss()
         if(res.status==200) {   
           
           res.json().then((data) => {
             localStorage.setItem('token',data.token)
+            
+            
 
 
           })

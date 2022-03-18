@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-signup',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupPage implements OnInit {
 
-  constructor() { }
+  constructor(public loadingController: LoadingController) { }
 
   ngOnInit() {
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',      
+    });
+    await loading.present();
   }
 
 
@@ -17,6 +25,9 @@ export class SignupPage implements OnInit {
 
 
   sendFetchRegistro(){ 
+
+    const ay = async()=>{
+      await this.presentLoading()  
     let account = { name:this.name, email:this.email, password:this.password};
    
     console.log(account)
@@ -28,7 +39,7 @@ export class SignupPage implements OnInit {
           'Content-Type': 'application/json'
       }
       }).then(res =>{
-
+        this.loadingController.dismiss()
         if(res.status==200) {   
           
           res.json().then((data) => {
@@ -39,6 +50,10 @@ export class SignupPage implements OnInit {
 
       }) 
       .catch(error => console.error('Error:', error))
+
+      }//ay
+
+      ay()
     }
 
 

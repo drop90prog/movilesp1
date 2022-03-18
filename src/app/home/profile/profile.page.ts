@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { LoadingController } from '@ionic/angular';
 
 const helper = new JwtHelperService();
 
@@ -11,7 +12,7 @@ const helper = new JwtHelperService();
 })
 export class ProfilePage implements OnInit {
 
-  constructor(public router: Router) {
+  constructor(public router: Router, public loadingController: LoadingController) {
     
    }
 
@@ -41,6 +42,13 @@ export class ProfilePage implements OnInit {
 
   }
 
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Saving changes...',      
+    });
+    await loading.present();
+  }
+
 
   editIsPrivate:boolean = false;
   showLastFavorites:boolean = false;
@@ -51,6 +59,12 @@ export class ProfilePage implements OnInit {
   email:string; name:string; password:string;
 
   guardarCambios(){
+
+    const ay = async()=>{
+      await this.presentLoading()
+
+    
+
     let d=localStorage.getItem('token')
     let decodedToken = helper.decodeToken(d);
     
@@ -65,6 +79,7 @@ export class ProfilePage implements OnInit {
       showLastRatings: this.showLastRatings,
     };
 
+    
     console.log(account)
     fetch('http://localhost:3000/update', {
 /*     fetch('https://movilesp1.herokuapp.com/update', { */
@@ -74,7 +89,7 @@ export class ProfilePage implements OnInit {
           'Content-Type': 'application/json'
       }
       }).then(res =>{ 
-      
+        this.loadingController.dismiss()
         if(res.status==200) {   
           
           res.json().then((data) => {
@@ -83,7 +98,7 @@ export class ProfilePage implements OnInit {
             let fdd=localStorage.getItem('token')
             let iusernamee = helper.decodeToken(fdd);
             this.username =iusernamee.name   
-            alert("Cambio realizado...")          
+                    
           })
           
      
@@ -91,7 +106,8 @@ export class ProfilePage implements OnInit {
       
       }) 
       .catch(error => console.error('Error:', error))
-      .then(response => console.log(response));
+      }//ay
+      ay()
     }
 
 
