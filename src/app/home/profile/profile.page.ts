@@ -82,8 +82,8 @@ export class ProfilePage implements OnInit {
 
     
     console.log(account)
-    fetch('http://localhost:3000/update', {
-/*     fetch('https://movilesp1.herokuapp.com/update', { */
+/*     fetch('http://localhost:3000/update', { */
+    fetch('https://movilesp1.herokuapp.com/update', {
       method: 'PUT', 
       body: JSON.stringify(account), 
       headers:{            

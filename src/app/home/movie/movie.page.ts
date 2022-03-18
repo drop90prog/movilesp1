@@ -82,8 +82,8 @@ export class MoviePage implements OnInit {
 
     let info = {idmovie:this.movie.id}
 
-    fetch('http://localhost:3000/findcomments', {
-/*       fetch('https://movilesp1.herokuapp.com/findcomments', { */
+/*     fetch('http://localhost:3000/findcomments', { */
+      fetch('https://movilesp1.herokuapp.com/findcomments', {
       method: 'POST', 
       body: JSON.stringify(info), 
       headers:{            
@@ -127,8 +127,8 @@ export class MoviePage implements OnInit {
   deleteComment(arg){
     let info = {idcomment:arg};
 
-    fetch('http://localhost:3000/deletecomment', {
-/*     fetch('https://movilesp1.herokuapp.com/deletecomment', { */
+/*     fetch('http://localhost:3000/deletecomment', { */
+    fetch('https://movilesp1.herokuapp.com/deletecomment', {
       method: 'DELETE', 
       body: JSON.stringify(info), 
       headers:{            
@@ -179,8 +179,8 @@ export class MoviePage implements OnInit {
 
     let info = {idmovie:this.movie.id, moviename:this.movie.original_title , iduser:this.ideuser, comment:this.komentario, username:this.username };
 
-    fetch('http://localhost:3000/savecomment', {
-/*     fetch('https://movilesp1.herokuapp.com/savecomment', { */
+/*     fetch('http://localhost:3000/savecomment', { */
+    fetch('https://movilesp1.herokuapp.com/savecomment', {
       method: 'POST', 
       body: JSON.stringify(info), 
       headers:{            
@@ -225,8 +225,8 @@ changeNewVoteAverageIsOn(){
     let info = {idmovie:this.movie.id}
     let sumatoria = 0;
 
-    fetch('http://localhost:3000/findrating', {
-/*       fetch('https://movilesp1.herokuapp.com/findrating', { */
+/*     fetch('http://localhost:3000/findrating', { */
+      fetch('https://movilesp1.herokuapp.com/findrating', {
       method: 'POST', 
       body: JSON.stringify(info), 
       headers:{            
@@ -270,8 +270,8 @@ changeNewVoteAverageIsOn(){
 
     let info = {idmovie:this.movie.id, moviename: this.movie.original_title, iduser:this.ideuser, username:this.username, rate:this.currentRate };
 
-    fetch('http://localhost:3000/saverating', {
-/*     fetch('https://movilesp1.herokuapp.com/saverating', { */
+/*     fetch('http://localhost:3000/saverating', { */
+    fetch('https://movilesp1.herokuapp.com/saverating', {
       method: 'POST', 
       body: JSON.stringify(info), 
       headers:{            
@@ -297,8 +297,8 @@ changeNewVoteAverageIsOn(){
 
     let info = {idmovie:this.movie.id, iduser:this.ideuser};
 
-    fetch('http://localhost:3000/deleterating', {
-/*     fetch('https://movilesp1.herokuapp.com/deleterating', { */
+ /*    fetch('http://localhost:3000/deleterating', { */
+    fetch('https://movilesp1.herokuapp.com/deleterating', {
       method: 'DELETE', 
       body: JSON.stringify(info), 
       headers:{            
@@ -336,8 +336,8 @@ changeNewVoteAverageIsOn(){
       
       let info = {iduser:iduserr};
     
-         await fetch('http://localhost:3000/find5lastcomments', {
-    /*       fetch('https://movilesp1.herokuapp.com/find5lastcomments', { */
+/*          await fetch('http://localhost:3000/find5lastcomments', { */
+         await fetch('https://movilesp1.herokuapp.com/find5lastcomments', {
             method: 'post', 
             body: JSON.stringify(info), 
             headers:{            
@@ -373,8 +373,8 @@ changeNewVoteAverageIsOn(){
     //=========================================================================
     
     
-     await fetch('http://localhost:3000/find5lastratings', {
-      /*       fetch('https://movilesp1.herokuapp.com/find5lastratings', { */
+     /* await fetch('http://localhost:3000/find5lastratings', { */
+           await fetch('https://movilesp1.herokuapp.com/find5lastratings', {
               method: 'post', 
               body: JSON.stringify(info), 
               headers:{            
@@ -412,8 +412,8 @@ changeNewVoteAverageIsOn(){
     //=========================================================================
     
     
-    await fetch('http://localhost:3000/getcheckboxes', {
-      /*       fetch('https://movilesp1.herokuapp.com/getcheckboxes', { */
+/*     await fetch('http://localhost:3000/getcheckboxes', { */
+           await fetch('https://movilesp1.herokuapp.com/getcheckboxes', {
               method: 'post', 
               body: JSON.stringify(info), 
               headers:{            
@@ -449,8 +449,8 @@ changeNewVoteAverageIsOn(){
    //=========================================================================
 
 
-    await fetch('http://localhost:3000/findfavorites', {
-/*       fetch('https://movilesp1.herokuapp.com/findfavorites', { */
+/*     await fetch('http://localhost:3000/findfavorites', { */
+     await fetch('https://movilesp1.herokuapp.com/findfavorites', {
     method: 'POST', 
     body: JSON.stringify(info), 
     headers:{
@@ -518,8 +518,8 @@ saveFavorite(){
       moviename: this.movie.original_title,      
     }
 
-    fetch('http://localhost:3000/savefavorite', {
-/*       fetch('https://movilesp1.herokuapp.com/savefavorite', { */
+ /*    fetch('http://localhost:3000/savefavorite', { */
+      fetch('https://movilesp1.herokuapp.com/savefavorite', {
       method: 'POST', 
       body: JSON.stringify(info), 
       headers:{
@@ -551,8 +551,8 @@ findFavoritePropio(){
     idmovie:this.movie.id,  
   }
 
-  fetch('http://localhost:3000/findfavorites', {
-/*       fetch('https://movilesp1.herokuapp.com/findfavorites', { */
+/*   fetch('http://localhost:3000/findfavorites', { */
+      fetch('https://movilesp1.herokuapp.com/findfavorites', {
     method: 'POST', 
     body: JSON.stringify(info), 
     headers:{
@@ -588,8 +588,8 @@ getReviews(){
 
     let info = {idmovie:this.movie.id}
 
-  await fetch('http://localhost:3000/findreviews', {
-/*      await fetch('https://movilesp1.herokuapp.com/findreviews', { */
+/*   await fetch('http://localhost:3000/findreviews', { */
+     await fetch('https://movilesp1.herokuapp.com/findreviews', {
     method: 'POST', 
     body: JSON.stringify(info), 
     headers:{            
@@ -626,8 +626,8 @@ getReviews(){
 
 let infos = {idmovie:this.movie.id, iduser:this.ideuser}
 
-  await fetch('http://localhost:3000/findratingreviewpersonal', {
-/*      await fetch('https://movilesp1.herokuapp.com/findratingreviewpersonal', { */
+/*   await fetch('http://localhost:3000/findratingreviewpersonal', { */
+     await fetch('https://movilesp1.herokuapp.com/findratingreviewpersonal', {
     method: 'POST', 
     body: JSON.stringify(infos), 
     headers:{            
@@ -684,8 +684,8 @@ saveReview(){
 
   let info = {idmovie:this.movie.id, moviename:this.movie.original_title , iduser:this.ideuser, username:this.username, review:this.revComment};
 
-  fetch('http://localhost:3000/savereview', {
-/*     fetch('https://movilesp1.herokuapp.com/savereview', { */
+/*   fetch('http://localhost:3000/savereview', { */
+    fetch('https://movilesp1.herokuapp.com/savereview', {
     method: 'POST', 
     body: JSON.stringify(info), 
     headers:{            
@@ -726,8 +726,8 @@ saveRatingReview(iduserreviewerr){
     rate:this.ratereview, 
     iduserreviewer: iduserreviewerr };
 
-  fetch('http://localhost:3000/saveratingreview', {
-/*     fetch('https://movilesp1.herokuapp.com/saveratingreview', { */
+/*   fetch('http://localhost:3000/saveratingreview', { */
+    fetch('https://movilesp1.herokuapp.com/saveratingreview', {
     method: 'POST', 
     body: JSON.stringify(info), 
     headers:{            
@@ -755,8 +755,8 @@ deleteVoteReview(arg){
  console.log(arg)
   let info = {iduser:this.ideuser, idmovie:this.movie.id , iduserreviewer:arg};
 
-  fetch('http://localhost:3000/deleteratingreview', {
-/*     fetch('https://movilesp1.herokuapp.com/deleteratingreview', { */
+/*   fetch('http://localhost:3000/deleteratingreview', { */
+    fetch('https://movilesp1.herokuapp.com/deleteratingreview', {
     method: 'DELETE', 
     body: JSON.stringify(info), 
     headers:{            
@@ -783,8 +783,8 @@ deleteVoteReview(arg){
 deleteReview(arg){
   let info = {idreview:arg};
 
-  fetch('http://localhost:3000/deletereview', {
-/*     fetch('https://movilesp1.herokuapp.com/deletereview', { */
+/*   fetch('http://localhost:3000/deletereview', { */
+    fetch('https://movilesp1.herokuapp.com/deletereview', {
     method: 'DELETE', 
     body: JSON.stringify(info), 
     headers:{            

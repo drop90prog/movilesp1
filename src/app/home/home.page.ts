@@ -552,8 +552,8 @@ export class HomePage implements OnInit{
   
   let info = {iduser:this.ideuser};
 
-     await fetch('http://localhost:3000/find5lastcomments', {
-/*       fetch('https://movilesp1.herokuapp.com/find5lastcomments', { */
+/*      await fetch('http://localhost:3000/find5lastcomments', { */
+     await fetch('https://movilesp1.herokuapp.com/find5lastcomments', {
         method: 'post', 
         body: JSON.stringify(info), 
         headers:{            
@@ -589,8 +589,8 @@ export class HomePage implements OnInit{
 //=========================================================================
 
 
- await fetch('http://localhost:3000/find5lastratings', {
-  /*       fetch('https://movilesp1.herokuapp.com/find5lastratings', { */
+/*  await fetch('http://localhost:3000/find5lastratings', { */
+       await fetch('https://movilesp1.herokuapp.com/find5lastratings', {
           method: 'post', 
           body: JSON.stringify(info), 
           headers:{            
@@ -627,8 +627,8 @@ export class HomePage implements OnInit{
 //=========================================================================
 
 
-await fetch('http://localhost:3000/getcheckboxes', {
-  /*       fetch('https://movilesp1.herokuapp.com/getcheckboxes', { */
+/* await fetch('http://localhost:3000/getcheckboxes', { */
+       await fetch('https://movilesp1.herokuapp.com/getcheckboxes', {
           method: 'post', 
           body: JSON.stringify(info), 
           headers:{            
@@ -660,8 +660,8 @@ await fetch('http://localhost:3000/getcheckboxes', {
 //=========================================================================
 
 
-await fetch('http://localhost:3000/findfavorites', {
-  /*       fetch('https://movilesp1.herokuapp.com/findfavorites', { */
+/* await fetch('http://localhost:3000/findfavorites', { */
+       await fetch('https://movilesp1.herokuapp.com/findfavorites', {
       method: 'POST', 
       body: JSON.stringify(info), 
       headers:{
