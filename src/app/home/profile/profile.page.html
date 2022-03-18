@@ -13,7 +13,7 @@
         <ion-img src="../../../assets/img/perfil.png"></ion-img>           
       </div>
       <div class="ion-text-center" style="margin-top: 40px;">
-        <ion-label style="font-size: large;">{{username}}</ion-label>        
+        <ion-label style="font-size: large;">@{{username}}</ion-label>        
       </div>
       <div class="ion-text-center" style="margin-top: 10px;">
         <ion-label style="font-size: large;">{{emaill}}</ion-label>       
@@ -49,7 +49,7 @@
           <ion-grid>
             <ion-row>
               <ion-col>
-                
+                <p style="font-size: small;">(Down below is what you allow others to see)</p>
                 <div>
                   <div>
                     <ion-checkbox [(ngModel)]="showLastFavorites"></ion-checkbox>
@@ -70,7 +70,8 @@
           </ion-grid>
         </div>
 
-          <ion-button (click)="guardarCambios()" color="light">Save Changes</ion-button>         
+          <ion-button (click)="guardarCambios()" color="light">Save Changes</ion-button>  
+          <ion-button (click)="deleteAccount()" color="danger">Delete account</ion-button>         
       </div>
     </div>
   </ion-card>

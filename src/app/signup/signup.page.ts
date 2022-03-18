@@ -42,6 +42,10 @@ export class SignupPage implements OnInit {
         this.loadingController.dismiss()
         if(res.status==200) {   
           
+          this.name=""
+          this.email=""
+          this.password=""
+          this.confirmar=""
           res.json().then((data) => {
             alert(data.message)
           })

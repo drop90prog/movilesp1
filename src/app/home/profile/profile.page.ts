@@ -135,6 +135,10 @@ back(){
 
 }
 
+deleteAccount(){
+  alert("You cannot quit buddy, go rest and come back later")
+}
+
 
 
 
